@@ -1,0 +1,19 @@
+{
+  "name": "ucsb-survey-autofill",
+  "version": "0.1.0",
+  "description": "Complete UCSB's surveys automatically",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SwiftWinds/ucsb-survey-autofill.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/SwiftWinds/ucsb-survey-autofill/issues"
+  },
+  "homepage": "https://github.com/SwiftWinds/ucsb-survey-autofill#readme"
+}
