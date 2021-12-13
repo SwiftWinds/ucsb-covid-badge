@@ -1,2 +1,2 @@
-# UCSB Survey Autofill
-Autofills UCSB's student COVID survey daily
+# UCSB Fake Badge
+Visit our website to create and use a fake UCSB COVID badge!
