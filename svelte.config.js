@@ -8,6 +8,12 @@ const config = {
 	preprocess: preprocess(),
 
 	kit: {
+		vite: {
+			ssr: {
+				noExternal: ['sveltefirets']
+			}
+		},
+
 		adapter: adapter(),
 
 		// hydrate the <div id="svelte"> element in src/app.html
