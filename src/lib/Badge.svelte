@@ -31,7 +31,7 @@
     return copy;
   }
 </script>
-<div class="badge-Green snipcss-kXczv" id="quarantineBadge">
+<div class="badge-Green" id="quarantineBadge">
   <div style="position: fixed; top: 0; left: 0; width: 100vw; z-index: 9999;">
     <button class="exit btn btn-primary btn-sm pull-right"><i class="fa fa-close"></i></button>
   </div>
@@ -84,19 +84,12 @@
     font-variant-east-asian: normal;
     font-weight: normal;
     font-stretch: normal;
-    font-size: 13px;
-    line-height: 1.231;
     font-family: arial, helvetica, clean, sans-serif;
 
   }
 
   body {
     margin: 0;
-    margin-top: 0px;
-    margin-right: 0px;
-    margin-bottom: 0px;
-    margin-left: 0px;
-
   }
 
   body {
@@ -115,29 +108,20 @@
 
   body {
     margin-bottom: 60px;
-    margin-bottom: 60px;
-
   }
 
   html {
-    font-family: sans-serif;
     font-family: sans-serif;
     text-size-adjust: 100%;
-
   }
 
   html {
     font-size: 10px;
-    font-size: 10px;
-
   }
 
   html {
     position: relative;
     min-height: 100%;
-    position: relative;
-    min-height: 100%;
-
   }
 
   #quarantineBadge {
