@@ -1,13 +1,9 @@
 lockfileVersion: 5.3
 
 specifiers:
-  '@fontsource/fira-mono': ^4.5.0
-  '@lukeed/uuid': ^2.0.0
-  '@macfja/svelte-persistent-store': ^1.3.0
   '@sveltejs/adapter-auto': next
   '@sveltejs/kit': next
   '@types/cookie': ^0.4.1
-  cookie: ^0.4.1
   dayjs: ^1.11.1
   prettier: ^2.5.1
   prettier-plugin-svelte: ^2.5.0
@@ -18,10 +14,6 @@ specifiers:
   typescript: ~4.6.2
 
 dependencies:
-  '@fontsource/fira-mono': 4.5.7
-  '@lukeed/uuid': 2.0.0
-  '@macfja/svelte-persistent-store': 1.3.0_svelte@3.47.0
-  cookie: 0.4.2
   dayjs: 1.11.1
 
 devDependencies:
@@ -38,36 +30,9 @@ devDependencies:
 
 packages:
 
-  /@fontsource/fira-mono/4.5.7:
-    resolution: {integrity: sha512-oQhYhIDXQwbLSK07arXWGv8H6+GGKlHHy/hfgHnv+DgkyD5i3z8l08tiYp5Bu0IVOYgX2s3lhs4H56yOBAxEYQ==}
-    dev: false
-
   /@iarna/toml/2.2.5:
     resolution: {integrity: sha512-trnsAYxU3xnS1gPHPyU961coFyLkh4gAD/0zQ5mymY4yOZ+CYvsPqUbOFSw0aDM4y0tV7tiFxL/1XfXPNC6IPg==}
     dev: true
-
-  /@lukeed/csprng/1.0.1:
-    resolution: {integrity: sha512-uSvJdwQU5nK+Vdf6zxcWAY2A8r7uqe+gePwLWzJ+fsQehq18pc0I2hJKwypZ2aLM90+Er9u1xn4iLJPZ+xlL4g==}
-    engines: {node: '>=8'}
-    dev: false
-
-  /@lukeed/uuid/2.0.0:
-    resolution: {integrity: sha512-dUz8OmYvlY5A9wXaroHIMSPASpSYRLCqbPvxGSyHguhtTQIy24lC+EGxQlwv71AhRCO55WOtgwhzQLpw27JaJQ==}
-    engines: {node: '>=8'}
-    dependencies:
-      '@lukeed/csprng': 1.0.1
-    dev: false
-
-  /@macfja/svelte-persistent-store/1.3.0_svelte@3.47.0:
-    resolution: {integrity: sha512-3lPsEAFe28zCNTyA+/pYfUgzRrH6KZvoG0i4IHVhYOs3Xzaqg9hN7LdHa+Qrv7GncXn/6XhDEpb36hB0f7CzXA==}
-    peerDependencies:
-      svelte: ^3.0
-    dependencies:
-      browser-cookies: 1.2.0
-      esserializer: 1.3.2
-      idb-keyval: 5.1.5
-      svelte: 3.47.0
-    dev: false
 
   /@nodelib/fs.scandir/2.1.5:
     resolution: {integrity: sha512-vq24Bq3ym5HEQm2NKCr3yXDwjc7vTsEThRDnkp2DK9p1uqLR+DHurm/NOTo0KG7HYHU7eppKZj3MyqYuMBf62g==}
@@ -218,10 +183,6 @@ packages:
       fill-range: 7.0.1
     dev: true
 
-  /browser-cookies/1.2.0:
-    resolution: {integrity: sha1-/KP/ubamOq3E2MCZnGtX0Pp9KbU=}
-    dev: false
-
   /buffer-crc32/0.2.13:
     resolution: {integrity: sha1-DTM+PwDqxQqhRUq9MO+MKl2ackI=}
     dev: true
@@ -249,11 +210,6 @@ packages:
   /concat-map/0.0.1:
     resolution: {integrity: sha1-2Klr13/Wjfd5OnMDajug1UBdR3s=}
     dev: true
-
-  /cookie/0.4.2:
-    resolution: {integrity: sha512-aSWTXFzaKWkvHO1Ny/s+ePFpvKsPnjc551iI41v3ny/ow6tBG5Vd+FuqGNhh1LxOmVzOlGUriIlOaokOvhaStA==}
-    engines: {node: '>= 0.6'}
-    dev: false
 
   /dayjs/1.11.1:
     resolution: {integrity: sha512-ER7EjqVAMkRRsxNCC5YqJ9d9VQYuWdGt7aiH2qA5R5wt8ZmWaP2dLUSIK6y/kVzLMlmh1Tvu5xUf4M/wdGJ5KA==}
@@ -488,10 +444,6 @@ packages:
       esbuild-windows-arm64: 0.14.38
     dev: true
 
-  /esserializer/1.3.2:
-    resolution: {integrity: sha512-48xQjlQ9Wr6dUfjLAC1IQF0bMIk6m62mN7BH0PklRP0NDfm2ISY16EXM8t2Wfc6WcLKser+X8ggeeFwieBkufQ==}
-    dev: false
-
   /estree-walker/2.0.2:
     resolution: {integrity: sha512-Rfkk/Mp/DL7JVje3u18FxFujQlTNR2q6QfMSMB7AvCBx91NGj/ba3kCfza0f6dVDbw7YlRf/nDrn7pQrCCyQ/w==}
     dev: true
@@ -572,12 +524,6 @@ packages:
     dependencies:
       function-bind: 1.1.1
     dev: true
-
-  /idb-keyval/5.1.5:
-    resolution: {integrity: sha512-J1utxYWQokYjy01LvDQ7WmiAtZCGUSkVi9EIBfUSyLOr/BesnMIxNGASTh9A1LzeISSjSqEPsfFdTss7EE7ofQ==}
-    dependencies:
-      safari-14-idb-fix: 1.0.6
-    dev: false
 
   /import-fresh/3.3.0:
     resolution: {integrity: sha512-veYYhQa+D1QBKznvhUHxb8faxlrwUnxseDAbAp457E0wLNio2bOSKnjYDhMj+YiAq61xrMGhQk9iXVk5FzgQMw==}
@@ -824,10 +770,6 @@ packages:
     dependencies:
       mri: 1.2.0
     dev: true
-
-  /safari-14-idb-fix/1.0.6:
-    resolution: {integrity: sha512-oTEQOdMwRX+uCtWCKT1nx2gAeSdpr8elg/2gcaKUH00SJU2xWESfkx11nmXwTRHy7xfQoj1o4TTQvdmuBosTnA==}
-    dev: false
 
   /sander/0.5.1:
     resolution: {integrity: sha1-dB4kXiMfB8r7b98PEzrfohalAq0=}

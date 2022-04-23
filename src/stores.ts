@@ -1,7 +1,17 @@
-import { localStorage, persist } from "@macfja/svelte-persistent-store";
 import { writable } from "svelte/store";
+import { browser } from "$app/env";
 
-export const name = persist(writable(), localStorage(), "name");
-export const pronouns = persist(writable(), localStorage(), "pronouns");
-export const profilePic = persist(writable(), localStorage(), "profilePic");
-export const permNum = persist(writable(), localStorage(), "permNum");
+const persistentStore = (key: string) => {
+  const store = writable((browser && localStorage.getItem(key)) || undefined);
+  store.subscribe((value) => {
+    if (browser) {
+      localStorage.setItem(key, value);
+    }
+  });
+  return store;
+};
+
+export const name = persistentStore("name");
+export const pronouns = persistentStore("pronouns");
+export const profilePic = persistentStore("profilePic");
+export const permNum = persistentStore("permNum");
