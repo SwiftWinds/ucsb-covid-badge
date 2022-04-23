@@ -5,7 +5,7 @@
 
   const pronounsChoices = ["He/him/his", "She/her/hers", "They/them/theirs"];
 
-  let showBadge = true;
+  let showBadge = false;
   let lastOpened = dayjs();
 
   const toggleShowBadge = () => {
