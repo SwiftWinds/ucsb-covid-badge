@@ -1,7 +1,7 @@
 <script lang="ts">
   import closeIcon from "$lib/assets/close.svg";
   import { name, permNum, profilePic, pronouns } from "../stores";
-  import { createEventDispatcher, onMount } from "svelte";
+  import { createEventDispatcher } from "svelte";
 
   export let time;
 
@@ -17,17 +17,15 @@
     dispatch("close");
   };
 
-  onMount(() => {
-    timeString = time.format(timeFormat);
-    let nextSurvey = time.hour(1).minute(0);
-    if (time.hour() >= 1) {
-      nextSurvey = nextSurvey.add(1, "day");
-    }
-    nextSurveyString = nextSurvey.format(timeFormat);
+  timeString = time.format(timeFormat);
+  let nextSurvey = time.hour(1).minute(0);
+  if (time.hour() >= 1) {
+    nextSurvey = nextSurvey.add(1, "day");
+  }
+  nextSurveyString = nextSurvey.format(timeFormat);
 
-    firstName = $name.split(" ")[0];
-    lastName = $name.substring(firstName.length + 1);
-  });
+  firstName = $name.split(" ")[0];
+  lastName = $name.substring(firstName.length + 1);
 </script>
 
 <style>
@@ -118,7 +116,7 @@
   </header>
   <h2 class="enrollment-type">STUDENT</h2>
   <div class="date">{timeString}</div>
-  <img alt="COVID badge profile picture" class="profile-picture" src={$profilePic} />
+  <img alt="COVID badge profile" class="profile-picture" src={$profilePic} />
   <h3>{firstName} - {$pronouns} {lastName}</h3>
   <div class="perm-number">#{$permNum?.substring(0, 6)}</div>
   <div>Next Survey Due: {nextSurveyString}</div>

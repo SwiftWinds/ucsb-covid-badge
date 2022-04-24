@@ -2,7 +2,7 @@ import { writable } from "svelte/store";
 import { browser } from "$app/env";
 
 const persistentStore = (key: string) => {
-  const store = writable((browser && localStorage.getItem(key)) || undefined);
+  const store = writable((browser && localStorage.getItem(key)) || "");
   store.subscribe((value) => {
     if (browser) {
       localStorage.setItem(key, value);
