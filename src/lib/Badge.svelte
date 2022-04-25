@@ -2,7 +2,7 @@
   import ProfilePic from "./ProfilePic.svelte";
 
   import Icon from "@iconify/svelte/dist/OfflineIcon.svelte";
-  import close from "@iconify/icons-fa-solid/times";
+  import close from "@iconify/icons-fa-solid/times.js";
   import { name, permNum, pronouns } from "../stores";
   import { createEventDispatcher } from "svelte";
 

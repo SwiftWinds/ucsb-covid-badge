@@ -1,6 +1,6 @@
 <script lang="ts">
   import Icon from "@iconify/svelte/dist/OfflineIcon.svelte";
-  import addPhoto from "@iconify/icons-ic/baseline-add-photo-alternate";
+  import addPhoto from "@iconify/icons-ic/baseline-add-photo-alternate.js";
 
   export let name;
 </script>
