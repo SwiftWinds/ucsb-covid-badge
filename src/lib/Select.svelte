@@ -6,9 +6,6 @@
 
 <style>
     .wrap {
-        position: absolute;
-        right: 0;
-        top: 40%;
         width: 350px;
         left: 0;
         margin: 0 auto;
@@ -16,6 +13,7 @@
 
     /* select starting styling ------------------------------*/
     .select {
+        margin-top: 2rem;
         font-family: 'Roboto', 'Helvetica', 'Arial', sans-serif;
         position: relative;
         width: 350px;
@@ -40,7 +38,7 @@
         border-bottom: 1px solid rgba(0, 0, 0, 0);
     }
 
-    option {
+    :global(option) {
         font-weight: normal;
     }
 

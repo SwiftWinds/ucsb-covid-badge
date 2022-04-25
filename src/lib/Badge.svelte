@@ -1,5 +1,6 @@
 <script lang="ts">
-  import closeIcon from "$lib/assets/close.svg";
+  import Icon from "@iconify/svelte/dist/OfflineIcon.svelte";
+  import close from "@iconify/icons-fa-solid/times";
   import { name, permNum, profilePic, pronouns } from "../stores";
   import { createEventDispatcher } from "svelte";
 
@@ -73,11 +74,6 @@
         border-color: #1684c2;
     }
 
-    .close-icon {
-        height: 2vh;
-        filter: invert(100%) sepia(1%) saturate(0%) hue-rotate(102deg) brightness(107%) contrast(102%); /* make the icon white */
-    }
-
     .enrollment-type {
         background-color: var(--primary-color);
         font-size: 2.35rem;
@@ -112,7 +108,9 @@
   <header>
     <div>UCSB COVID-19 Clearance Status</div>
     <h2>Cleared to be On-Site</h2>
-    <button on:click={handleClose}><img alt="Close pop-up" class="close-icon" src={closeIcon} /></button>
+    <button on:click={handleClose}>
+      <Icon color="white" icon={close}></Icon>
+    </button>
   </header>
   <h2 class="enrollment-type">STUDENT</h2>
   <div class="date">{timeString}</div>

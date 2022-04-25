@@ -1,6 +1,8 @@
 <script lang="ts">
   import Icon from "@iconify/svelte/dist/OfflineIcon.svelte";
   import addPhoto from "@iconify/icons-ic/baseline-add-photo-alternate";
+
+  export let name;
 </script>
 
 <style>
@@ -8,6 +10,8 @@
 
     div {
         margin: 2rem;
+        display: grid;
+        place-items: center;
     }
 
     .btn {
@@ -23,7 +27,7 @@
         padding: 0 16px;
 
         color: white;
-        background-color: #26a69a;
+        background: linear-gradient(to right, #7928CA, #FF0080);
         letter-spacing: 0.5px;
         -webkit-transition: background-color .2s ease-out;
         transition: background-color .2s ease-out;
@@ -36,7 +40,7 @@
     .btn:hover {
         -webkit-box-shadow: 0 3px 3px 0 rgba(0, 0, 0, 0.14), 0 1px 7px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -1px rgba(0, 0, 0, 0.2);
         box-shadow: rgba(0, 0, 0, 0.14) 0 3px 3px 0, rgba(0, 0, 0, 0.12) 0 1px 7px 0, rgba(0, 0, 0, 0.2) 0 3px 1px -1px;
-        background-color: #2bbbad;
+        background: linear-gradient(to right, #934adb, #ff3399);
     }
 
     .icon {
@@ -62,6 +66,6 @@
       <Icon icon={addPhoto} />
     </span>
     Browse
-    <input type="file">
+    <input accept="image/*" {name} on:change type="file">
   </span>
 </div>

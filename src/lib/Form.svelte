@@ -29,10 +29,6 @@
       <option value={pronoun}>{pronoun}</option>
     {/each}
   </Select>
-  <label>
-    Profile picture:
-    <input accept="image/*" name="profilePic" on:change={handleImgSelect} type="file">
-  </label>
-  <FileInput />
+  <FileInput name="profilePic" />
   <input type="submit" value="Show badge" />
 </form>
