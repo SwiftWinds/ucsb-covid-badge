@@ -2,9 +2,9 @@
   import { name, permNum, profilePic, pronouns } from "../../stores";
   import Input from "./inputs/Input.svelte";
   import Select from "./inputs/Select.svelte";
-  import ImgInput from "./inputs/ImgInput.svelte";
+  import ImgInputBtn from "./inputs/buttons/ImgInputBtn.svelte";
   import ProfilePic from "./ProfilePic.svelte";
-  import Button from "./inputs/ShowBadgeBtn.svelte";
+  import ShowBadgeBtn from "./inputs/buttons/ShowBadgeBtn.svelte";
 
   const pronounsChoices = ["He/him/his", "She/her/hers", "They/them/theirs"];
 
@@ -38,7 +38,7 @@
       <option value={pronoun}>{pronoun}</option>
     {/each}
   </Select>
-  <ImgInput name="profilePic" on:change={handleImgSelect} />
+  <ImgInputBtn name="profilePic" on:change={handleImgSelect} />
   <ProfilePic />
-  <Button />
+  <ShowBadgeBtn />
 </form>
