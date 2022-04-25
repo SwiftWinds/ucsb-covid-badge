@@ -24,7 +24,7 @@
         background-color: transparent;
         width: 350px;
         padding: 10px 10px 10px 0;
-        font-size: 18px;
+        font-size: 1.3rem;
         border-radius: 0;
         border: none;
         border-bottom: 2px solid #9b9b9b;

@@ -26,6 +26,7 @@
         background-image: linear-gradient(60deg, #7928CA, #FF0080);
         background-size: 100%;
         background-clip: text;
+        -webkit-background-clip: text;
         color: transparent;
     }
 </style>

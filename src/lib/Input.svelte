@@ -48,7 +48,7 @@
     input:focus {
         padding-bottom: 6px;
         font-weight: 700;
-        border-width: 3px;
+        border-bottom-width: 3px;
         border-image: linear-gradient(to right, #7928CA, #FF0080) 1;
     }
 
