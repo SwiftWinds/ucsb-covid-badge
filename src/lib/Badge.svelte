@@ -1,7 +1,9 @@
 <script lang="ts">
+  import ProfilePic from "./ProfilePic.svelte";
+
   import Icon from "@iconify/svelte/dist/OfflineIcon.svelte";
   import close from "@iconify/icons-fa-solid/times";
-  import { name, permNum, profilePic, pronouns } from "../stores";
+  import { name, permNum, pronouns } from "../stores";
   import { createEventDispatcher } from "svelte";
 
   export let time;
@@ -88,11 +90,6 @@
         margin: 0.125rem 0;
     }
 
-    .profile-picture {
-        padding-top: 0.1rem;
-        height: 22.5vh;
-    }
-
     h3 {
         font-size: 1.5rem;
         text-transform: uppercase;
@@ -114,7 +111,7 @@
   </header>
   <h2 class="enrollment-type">STUDENT</h2>
   <div class="date">{timeString}</div>
-  <img alt="COVID badge profile" class="profile-picture" src={$profilePic} />
+  <ProfilePic />
   <h3>{firstName} - {$pronouns} {lastName}</h3>
   <div class="perm-number">#{$permNum?.substring(0, 6)}</div>
   <div>Next Survey Due: {nextSurveyString}</div>

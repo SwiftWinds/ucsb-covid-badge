@@ -1,14 +1,5 @@
-<script lang="ts">
-  import Icon from "@iconify/svelte/dist/OfflineIcon.svelte";
-  import addPhoto from "@iconify/icons-ic/baseline-add-photo-alternate";
-
-  export let name;
-</script>
-
 <style>
-    @import url("https://fonts.googleapis.com/css?family=Poppins|Roboto");
-
-    div {
+    .wrapper {
         margin: 2rem;
         display: grid;
         place-items: center;
@@ -20,7 +11,7 @@
 
         display: inline-block;
         font-size: 14px;
-        line-height: 36px;
+        width: 350px;
         text-transform: uppercase;
         vertical-align: middle;
         border-radius: 2px;
@@ -43,13 +34,14 @@
         background: linear-gradient(to right, #934adb, #ff3399);
     }
 
-    .icon {
-        display: grid;
-        place-items: center;
-        height: 36px;
-        font-size: 1.3rem;
+    .label {
+        text-align: center;
+        margin-top: 24px;
+        margin-bottom: 24px;
+        font-weight: bold;
+        width: 100%;
+        font-size: 1.8rem;
         float: left;
-        margin-right: 15px;
     }
 
     input {
@@ -57,15 +49,17 @@
         top: 0;
         right: 0;
         opacity: 0;
+
+        width: 100%;
+        height: 100%;
     }
 </style>
 
-<div>
+<div class="wrapper">
   <span class="btn">
-    <span class="icon">
-      <Icon icon={addPhoto} />
-    </span>
-    Browse
-    <input accept="image/*" {name} on:change type="file">
+    <div class="label">
+      Show Badge
+    </div>
+    <input type="submit">
   </span>
 </div>

@@ -14,7 +14,6 @@
     /* select starting styling ------------------------------*/
     .select {
         margin-top: 2rem;
-        font-family: 'Roboto', 'Helvetica', 'Arial', sans-serif;
         position: relative;
         width: 350px;
     }
@@ -89,7 +88,7 @@
     select:valid ~ label {
         top: -16px;
         transition: 0.2s ease all;
-        font-size: 14px;
+        font-size: 1rem;
     }
 
     /* BOTTOM BARS ================================= */

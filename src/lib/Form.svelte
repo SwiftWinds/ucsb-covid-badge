@@ -2,7 +2,9 @@
   import { name, permNum, profilePic, pronouns } from "../stores";
   import Input from "./Input.svelte";
   import Select from "./Select.svelte";
-  import FileInput from "./FileInput.svelte";
+  import ImgInput from "./ImgInput.svelte";
+  import ProfilePic from "./ProfilePic.svelte";
+  import Button from "./Button.svelte";
 
   const pronounsChoices = ["He/him/his", "She/her/hers", "They/them/theirs"];
 
@@ -21,14 +23,22 @@
   };
 </script>
 
+<style>
+    form {
+        display: grid;
+        place-items: center;
+    }
+</style>
+
 <form on:submit|preventDefault>
   <Input bind:value={$name} id="name">Full name</Input>
   <Input bind:value={$permNum} id="permNum">Perm #</Input>
-  <Select bind:value={$pronouns} id="pronouns" label="Pronouns" required>
+  <Select bind:value={$pronouns} id="pronouns" label="Pronouns">
     {#each pronounsChoices as pronoun}
       <option value={pronoun}>{pronoun}</option>
     {/each}
   </Select>
-  <FileInput name="profilePic" />
-  <input type="submit" value="Show badge" />
+  <ImgInput name="profilePic" on:change={handleImgSelect} />
+  <ProfilePic />
+  <Button />
 </form>

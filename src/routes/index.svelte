@@ -8,7 +8,6 @@
 
   const toggleShowBadge = () => {
     lastOpened = dayjs();
-    console.log("lastOpened", lastOpened);
     showBadge = !showBadge;
   };
 </script>
@@ -33,7 +32,7 @@
 
 {#if !showBadge}
   <header>
-    <h1 class="u">UFB</h1>
+    <h1 title="UCSB Fake Badge">UFB</h1>
   </header>
   <Form on:submit={toggleShowBadge} />
 {:else}
