@@ -1,7 +1,10 @@
 <script lang="ts">
-  import closeIcon from "$lib/assets/close.svg";
-  import { name, permNum, profilePic, pronouns } from "../stores";
-  import { createEventDispatcher, onMount } from "svelte";
+  import ProfilePic from "./ProfilePic.svelte";
+
+  import Icon from "@iconify/svelte/dist/OfflineIcon.svelte";
+  import close from "@iconify/icons-fa-solid/times";
+  import { name, permNum, pronouns } from "../stores";
+  import { createEventDispatcher } from "svelte";
 
   export let time;
 
@@ -17,17 +20,15 @@
     dispatch("close");
   };
 
-  onMount(() => {
-    timeString = time.format(timeFormat);
-    let nextSurvey = time.hour(1).minute(0);
-    if (time.hour() >= 1) {
-      nextSurvey = nextSurvey.add(1, "day");
-    }
-    nextSurveyString = nextSurvey.format(timeFormat);
+  timeString = time.format(timeFormat);
+  let nextSurvey = time.hour(1).minute(0);
+  if (time.hour() >= 1) {
+    nextSurvey = nextSurvey.add(1, "day");
+  }
+  nextSurveyString = nextSurvey.format(timeFormat);
 
-    firstName = $name.split(" ")[0];
-    lastName = $name.substring(firstName.length + 1);
-  });
+  firstName = $name.split(" ")[0];
+  lastName = $name.substring(firstName.length + 1);
 </script>
 
 <style>
@@ -75,11 +76,6 @@
         border-color: #1684c2;
     }
 
-    .close-icon {
-        height: 2vh;
-        filter: invert(100%) sepia(1%) saturate(0%) hue-rotate(102deg) brightness(107%) contrast(102%); /* make the icon white */
-    }
-
     .enrollment-type {
         background-color: var(--primary-color);
         font-size: 2.35rem;
@@ -92,11 +88,6 @@
         font-size: 2.5rem;
         padding: 0.25rem 0;
         margin: 0.125rem 0;
-    }
-
-    .profile-picture {
-        padding-top: 0.1rem;
-        height: 22.5vh;
     }
 
     h3 {
@@ -114,11 +105,13 @@
   <header>
     <div>UCSB COVID-19 Clearance Status</div>
     <h2>Cleared to be On-Site</h2>
-    <button on:click={handleClose}><img alt="Close pop-up" class="close-icon" src={closeIcon} /></button>
+    <button on:click={handleClose}>
+      <Icon color="white" icon={close}></Icon>
+    </button>
   </header>
   <h2 class="enrollment-type">STUDENT</h2>
   <div class="date">{timeString}</div>
-  <img alt="COVID badge profile picture" class="profile-picture" src={$profilePic} />
+  <ProfilePic />
   <h3>{firstName} - {$pronouns} {lastName}</h3>
   <div class="perm-number">#{$permNum?.substring(0, 6)}</div>
   <div>Next Survey Due: {nextSurveyString}</div>
