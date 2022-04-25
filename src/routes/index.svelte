@@ -1,6 +1,6 @@
 <script lang="ts">
   import Badge from "../lib/Badge.svelte";
-  import Form from "../lib/Form.svelte";
+  import Form from "../lib/form/Form.svelte";
   import dayjs from "dayjs";
 
   let showBadge = false;

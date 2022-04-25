@@ -1,10 +1,10 @@
 <script lang="ts">
-  import { name, permNum, profilePic, pronouns } from "../stores";
-  import Input from "./Input.svelte";
-  import Select from "./Select.svelte";
-  import ImgInput from "./ImgInput.svelte";
+  import { name, permNum, profilePic, pronouns } from "../../stores";
+  import Input from "./inputs/Input.svelte";
+  import Select from "./inputs/Select.svelte";
+  import ImgInput from "./inputs/ImgInput.svelte";
   import ProfilePic from "./ProfilePic.svelte";
-  import Button from "./Button.svelte";
+  import Button from "./inputs/ShowBadgeBtn.svelte";
 
   const pronounsChoices = ["He/him/his", "She/her/hers", "They/them/theirs"];
 

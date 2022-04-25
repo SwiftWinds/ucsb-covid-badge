@@ -1,8 +1,20 @@
+<script lang="ts">
+  export let variant;
+</script>
+
 <style>
-    .wrapper {
+    div {
         margin: 2rem;
         display: grid;
         place-items: center;
+    }
+
+    .wide {
+        width: 350px;
+    }
+
+    .high-line-height {
+        line-height: 36px;
     }
 
     .btn {
@@ -11,7 +23,6 @@
 
         display: inline-block;
         font-size: 14px;
-        width: 350px;
         text-transform: uppercase;
         vertical-align: middle;
         border-radius: 2px;
@@ -34,16 +45,6 @@
         background: linear-gradient(to right, #934adb, #ff3399);
     }
 
-    .label {
-        text-align: center;
-        margin-top: 24px;
-        margin-bottom: 24px;
-        font-weight: bold;
-        width: 100%;
-        font-size: 1.8rem;
-        float: left;
-    }
-
     input {
         position: absolute;
         top: 0;
@@ -55,11 +56,9 @@
     }
 </style>
 
-<div class="wrapper">
-  <span class="btn">
-    <div class="label">
-      Show Badge
-    </div>
-    <input type="submit">
+<div>
+  <span class="btn {variant}">
+    <slot />
+    <input {...$$restProps} on:change>
   </span>
 </div>
