@@ -1,5 +1,5 @@
 {
-  "name": "ucsb-fake-badge",
+  "name": "ucsb-covid-badge",
   "version": "0.0.1",
   "scripts": {
     "dev": "svelte-kit dev",

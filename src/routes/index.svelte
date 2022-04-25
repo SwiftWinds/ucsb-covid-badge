@@ -33,7 +33,7 @@
 
 {#if !showBadge}
   <header>
-    <h1 title="UCSB Fake Badge">UFB</h1>
+    <h1 title="UCSB COVID Badge">UCB</h1>
   </header>
   <Form on:submit={toggleShowBadge} />
 {:else}
