@@ -3,7 +3,7 @@
   import Input from "./inputs/Input.svelte";
   import Select from "./inputs/Select.svelte";
   import ImgInputBtn from "./inputs/buttons/ImgInputBtn.svelte";
-  import ProfilePic from "./ProfilePic.svelte";
+  import ProfilePic from "../ProfilePic.svelte";
   import ShowBadgeBtn from "./inputs/buttons/ShowBadgeBtn.svelte";
 
   const pronounsChoices = ["He/him/his", "She/her/hers", "They/them/theirs"];

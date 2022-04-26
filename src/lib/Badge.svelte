@@ -1,5 +1,5 @@
 <script lang="ts">
-  import ProfilePic from "./form/ProfilePic.svelte";
+  import ProfilePic from "./ProfilePic.svelte";
 
   import Icon from "@iconify/svelte/dist/OfflineIcon.svelte";
   import close from "@iconify/icons-fa-solid/times.js";

@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { profilePic } from "../../stores";
+  import { profilePic } from "../stores";
 </script>
 
 <style>
