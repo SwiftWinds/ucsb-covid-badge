@@ -5,6 +5,7 @@
   import close from "@iconify/icons-fa-solid/times.js";
   import { name, permNum, pronouns } from "../stores";
   import { createEventDispatcher } from "svelte";
+  import { pronounsChoices } from "./form/Form.svelte";
 
   export let time;
 
@@ -112,7 +113,11 @@
   <h2 class="enrollment-type">STUDENT</h2>
   <div class="date">{timeString}</div>
   <ProfilePic />
-  <h3>{firstName} - {$pronouns} {lastName}</h3>
+  {#if $pronouns === pronounsChoices[0]}  <!--don't show pronouns-->
+    <h3>{$name}</h3>
+  {:else}
+    <h3>{firstName} - {$pronouns} {lastName}</h3>
+  {/if}
   <div class="perm-number">#{$permNum?.substring(0, 6)}</div>
   <div>Next Survey Due: {nextSurveyString}</div>
 </div>

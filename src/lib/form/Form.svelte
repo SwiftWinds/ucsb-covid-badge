@@ -1,3 +1,7 @@
+<script context="module">
+  export const pronounsChoices = ["(not shown)", "He/him/his", "She/her/hers", "They/them/theirs"];
+</script>
+
 <script lang="ts">
   import { name, permNum, profilePic, pronouns } from "../../stores";
   import Input from "./inputs/Input.svelte";
@@ -5,8 +9,6 @@
   import ImgInputBtn from "./inputs/buttons/ImgInputBtn.svelte";
   import ProfilePic from "../ProfilePic.svelte";
   import ShowBadgeBtn from "./inputs/buttons/ShowBadgeBtn.svelte";
-
-  const pronounsChoices = ["He/him/his", "She/her/hers", "They/them/theirs"];
 
   const handleImgSelect = e => {
     const img = e.target.files?.[0];
