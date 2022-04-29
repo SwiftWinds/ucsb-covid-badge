@@ -12,25 +12,6 @@
   };
 </script>
 
-<style>
-    header {
-        display: grid;
-        place-items: center;
-    }
-
-    h1 {
-        font-weight: 800;
-        font-size: 8rem;
-        letter-spacing: 1rem;
-        display: inline-block;
-        background-image: linear-gradient(60deg, #7928CA, #FF0080);
-        background-size: 100%;
-        background-clip: text;
-        -webkit-background-clip: text;
-        color: transparent;
-    }
-</style>
-
 {#if !showBadge}
   <header>
     <h1 title="UCSB COVID Badge">UCB</h1>
@@ -39,3 +20,21 @@
 {:else}
   <Badge time={lastOpened} on:close={toggleShowBadge} />
 {/if}
+
+<style lang="postcss">
+  header {
+    display: grid;
+    place-items: center;
+  }
+
+  h1 {
+    font-weight: 800;
+    font-size: 8rem;
+    letter-spacing: 1rem;
+    display: inline-block;
+    background-image: linear-gradient(60deg, #7928ca, #ff0080);
+    background-size: 100%;
+    background-clip: text;
+    color: transparent;
+  }
+</style>
