@@ -35,8 +35,8 @@
     border-radius: 2px;
     padding: 0 16px;
 
-    color: white;
-    background: linear-gradient(to right, #7928ca, #ff0080);
+    color: var(--btn-text);
+    background: linear-gradient(to right, var(--grad-start), var(--grad-end));
     letter-spacing: 0.5px;
     transition: background-color 0.2s ease-out;
     cursor: pointer;
@@ -48,7 +48,7 @@
   span:hover {
     box-shadow: rgba(0, 0, 0, 0.14) 0 3px 3px 0, rgba(0, 0, 0, 0.12) 0 1px 7px 0,
     rgba(0, 0, 0, 0.2) 0 3px 1px -1px;
-    background: linear-gradient(to right, #934adb, #ff3399);
+    background: var(--btn-hover);
   }
 
   input {

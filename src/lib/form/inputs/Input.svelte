@@ -33,10 +33,10 @@
     font-family: inherit;
     width: 100%;
     border: 0;
-    border-bottom: 2px solid #9b9b9b;
+    border-bottom: 2px solid var(--underscore);
     outline: 0;
     font-size: 1.3rem;
-    color: black;
+    color: var(--text);
     padding: 7px 0;
     background: transparent;
     transition: border-color 0.2s;
@@ -58,14 +58,14 @@
     display: block;
     transition: 0.2s;
     font-size: 1rem;
-    color: #9b9b9b;
+    color: var(--label-unselected);
   }
 
   input:focus {
     padding-bottom: 6px;
     font-weight: 700;
     border-bottom-width: 3px;
-    border-image: linear-gradient(to right, #7928ca, #ff0080) 1;
+    border-image: linear-gradient(to right, var(--grad-start), var(--grad-end)) 1;
   }
 
   input:focus ~ label {
@@ -74,7 +74,7 @@
     display: block;
     transition: 0.2s;
     font-size: 1rem;
-    color: #7928ca;
+    color: var(--label-selected);
     font-weight: 700;
   }
 

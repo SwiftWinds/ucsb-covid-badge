@@ -57,6 +57,10 @@
     background-color: limegreen;
     --primary-color: #003660;
     --secondary-color: #febc11;
+    --btn-bg: linear-gradient(#54b4eb, #2fa4e7 60%, #1d9ce5);
+    --btn-bot-border: #178acc;
+    --btn-border-unselected: #2fa4e7;
+    --btn-border-selected: #1684c2;
   }
 
   div,
@@ -90,14 +94,14 @@
     position: absolute;
     top: 0;
     right: 0;
-    border: 1px solid #2fa4e7;
-    border-bottom-color: #178acc;
+    border: 1px solid var(--btn-border-unselected);
+    border-bottom-color: var(--btn-bot-border);
     border-radius: 3px;
-    background-image: linear-gradient(#54b4eb, #2fa4e7 60%, #1d9ce5);
+    background-image: var(--btn-bg);
   }
 
   button:hover {
-    border-color: #1684c2;
+    border-color: var(--btn-border-selected);
   }
 
   .enrollment-type {
