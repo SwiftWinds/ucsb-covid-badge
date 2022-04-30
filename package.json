@@ -1,6 +1,8 @@
 {
   "name": "ucsb-covid-badge",
+  "description": "A simple COVID badge replica website for UCSB dining commons",
   "version": "1.0.0",
+  "homepage": "https://covidbadge.pages.dev",
   "scripts": {
     "dev": "svelte-kit dev",
     "build": "svelte-kit build",
@@ -38,5 +40,13 @@
   "type": "module",
   "dependencies": {
     "dayjs": "^1.11.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SwiftWinds/ucsb-covid-badge.git"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/SwiftWinds/ucsb-covid-badge/issues"
   }
 }
