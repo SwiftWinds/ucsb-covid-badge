@@ -31,6 +31,7 @@
   }
 
   select {
+    color: var(--text);
     position: relative;
     font-family: inherit;
     background-color: transparent;
@@ -39,7 +40,7 @@
     font-size: 1.3rem;
     border-radius: 0;
     border: none;
-    border-bottom: 2px solid #9b9b9b;
+    border-bottom: 2px solid var(--underscore);
   }
 
   /* Remove focus */
@@ -51,6 +52,7 @@
 
   :global(option) {
     font-weight: normal;
+    background: var(--bg);
   }
 
   /* Use custom arrow */
@@ -69,17 +71,17 @@
     content: "";
     border-left: 6px solid transparent;
     border-right: 6px solid transparent;
-    border-top: 6px solid #9b9b9b;
+    border-top: 6px solid var(--underscore);
     pointer-events: none;
   }
 
   .select:focus-within::after {
-    border-top: 6px solid #ff0080;
+    border-top: 6px solid var(--grad-end);
   }
 
   /* LABEL ======================================= */
   label {
-    color: #9b9b9b;
+    color: var(--label-unselected);
     font-size: 18px;
     font-weight: normal;
     position: absolute;
@@ -90,7 +92,7 @@
   }
 
   select:focus + label {
-    color: #7928ca;
+    color: var(--label-selected);
     font-weight: bold;
   }
 
@@ -114,7 +116,7 @@
     width: 0;
     bottom: 1px;
     position: absolute;
-    background: linear-gradient(to right, #7928ca, #bc14a5);
+    background: linear-gradient(to right, var(--grad-start), var(--grad-mid));
     transition: 0.2s ease all;
   }
 
@@ -124,7 +126,7 @@
     width: 0;
     bottom: 1px;
     position: absolute;
-    background: linear-gradient(to right, #bc14a5, #ff0080);
+    background: linear-gradient(to right, var(--grad-mid), var(--grad-end));
     transition: 0.2s ease all;
   }
 

@@ -32,9 +32,10 @@
     font-size: 8rem;
     letter-spacing: 1rem;
     display: inline-block;
-    background-image: linear-gradient(60deg, #7928ca, #ff0080);
+    background-image: linear-gradient(60deg, var(--grad-start), var(--grad-end));
     background-size: 100%;
     background-clip: text;
     color: transparent;
   }
+
 </style>

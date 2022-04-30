@@ -1,8 +1,8 @@
 {
   "name": "UCSB COVID Badge",
-  "short_name": "UCB",
+  "short_name": "COVIDBadge",
   "description": "A simple COVID badge replica website for UCSB dining commons",
-  "theme_color": "#bc14a5",
+  "theme_color": "#ffffff",
   "background_color": "#ffffff",
   "display": "standalone",
   "orientation": "portrait",
