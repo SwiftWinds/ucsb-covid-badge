@@ -1,11 +1,9 @@
 <script lang="ts">
   import ProfilePic from "./ProfilePic.svelte";
-
-  import Icon from "@iconify/svelte/dist/OfflineIcon.svelte";
-  import close from "@iconify/icons-fa-solid/times.js";
   import { name, permNum, pronouns } from "../stores";
   import { createEventDispatcher } from "svelte";
   import { pronounsChoices } from "./form/Form.svelte";
+  import CloseIcon from "./icons/CloseIcon.svelte";
 
   export let time;
 
@@ -37,7 +35,7 @@
     <div>UCSB COVID-19 Clearance Status</div>
     <h2>Cleared to be On-Site</h2>
     <button on:click={handleClose}>
-      <Icon color="white" icon={close} />
+      <CloseIcon />
     </button>
   </header>
   <h2 class="enrollment-type">STUDENT</h2>

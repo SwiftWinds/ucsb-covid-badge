@@ -3,11 +3,11 @@
 </script>
 
 <InputBtn type="submit" variant="wide">
-  <span class="label"> Show Badge </span>
+  <span>Show Badge</span>
 </InputBtn>
 
 <style lang="postcss">
-  .label {
+  span {
     text-align: center;
     margin-top: 24px;
     margin-bottom: 24px;

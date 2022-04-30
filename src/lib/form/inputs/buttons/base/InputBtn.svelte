@@ -3,7 +3,7 @@
 </script>
 
 <div>
-  <span class="btn {variant}">
+  <span class={variant}>
     <slot />
     <input {...$$restProps} on:change />
   </span>
@@ -24,7 +24,7 @@
     line-height: 36px;
   }
 
-  .btn {
+  span {
     box-shadow: rgba(0, 0, 0, 0.14) 0 2px 2px 0,
     rgba(0, 0, 0, 0.12) 0 3px 1px -2px, rgba(0, 0, 0, 0.2) 0 1px 5px 0;
 
@@ -45,7 +45,7 @@
     overflow: hidden;
   }
 
-  .btn:hover {
+  span:hover {
     box-shadow: rgba(0, 0, 0, 0.14) 0 3px 3px 0, rgba(0, 0, 0, 0.12) 0 1px 7px 0,
     rgba(0, 0, 0, 0.2) 0 3px 1px -1px;
     background: linear-gradient(to right, #934adb, #ff3399);

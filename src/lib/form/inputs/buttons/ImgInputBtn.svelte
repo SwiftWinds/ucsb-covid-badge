@@ -1,7 +1,6 @@
 <script lang="ts">
-  import Icon from "@iconify/svelte/dist/OfflineIcon.svelte";
-  import addPhoto from "@iconify/icons-ic/baseline-add-photo-alternate.js";
   import InputBtn from "./base/InputBtn.svelte";
+  import AddPhotoIcon from "../../../icons/AddPhotoIcon.svelte";
 
   export let name;
 </script>
@@ -13,14 +12,14 @@
   type="file"
   variant="high-line-height"
 >
-  <span class="icon">
-    <Icon icon={addPhoto} />
+  <span>
+    <AddPhotoIcon />
   </span>
   Browse
 </InputBtn>
 
 <style lang="postcss">
-  .icon {
+  span {
     display: grid;
     place-items: center;
     height: 36px;
