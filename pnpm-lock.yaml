@@ -25,6 +25,7 @@ specifiers:
   tslib: ^2.3.1
   typescript: ~4.6.2
   workbox-precaching: ^6.5.3
+  workbox-window: ^6.5.3
 
 dependencies:
   dayjs: 1.11.1
@@ -53,6 +54,7 @@ devDependencies:
   tslib: 2.4.0
   typescript: 4.6.3
   workbox-precaching: 6.5.3
+  workbox-window: 6.5.3
 
 packages:
 
@@ -248,6 +250,10 @@ packages:
     resolution: {integrity: sha512-BPdoIt1lfJ6B7rw35ncdwBZrAssjcwzI5LByIrYs+tpXlj/CAkuVdRsgZDdP4lq5EjyWzwxZCqAoFyHKFwp32g==}
     dependencies:
       '@types/node': 17.0.25
+    dev: true
+
+  /@types/trusted-types/2.0.2:
+    resolution: {integrity: sha512-F5DIZ36YVLE+PN+Zwws4kJogq47hNgX3Nx6WyDJ3kcplxyke3XIzB8uK5n/Lpm1HBsbGzd6nmGehL8cPekP+Tg==}
     dev: true
 
   /@typescript-eslint/eslint-plugin/5.20.0_4a38537b28d61fb150842b8115287657:
@@ -1957,6 +1963,13 @@ packages:
   /workbox-strategies/6.5.3:
     resolution: {integrity: sha512-MgmGRrDVXs7rtSCcetZgkSZyMpRGw8HqL2aguszOc3nUmzGZsT238z/NN9ZouCxSzDu3PQ3ZSKmovAacaIhu1w==}
     dependencies:
+      workbox-core: 6.5.3
+    dev: true
+
+  /workbox-window/6.5.3:
+    resolution: {integrity: sha512-GnJbx1kcKXDtoJBVZs/P7ddP0Yt52NNy4nocjBpYPiRhMqTpJCNrSL+fGHZ/i/oP6p/vhE8II0sA6AZGKGnssw==}
+    dependencies:
+      '@types/trusted-types': 2.0.2
       workbox-core: 6.5.3
     dev: true
 
