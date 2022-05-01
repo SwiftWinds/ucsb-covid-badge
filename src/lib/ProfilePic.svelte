@@ -9,7 +9,7 @@
 <style lang="postcss">
   img {
     padding-top: 0.1rem;
-    height: 22.5vh;
+    max-width: 170px;
   }
 
   @media (prefers-color-scheme: dark) {
