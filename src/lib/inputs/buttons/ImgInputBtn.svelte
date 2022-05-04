@@ -1,6 +1,6 @@
 <script lang="ts">
   import InputBtn from "./base/InputBtn.svelte";
-  import AddPhotoIcon from "../../../icons/AddPhotoIcon.svelte";
+  import AddPhotoIcon from "../../icons/AddPhotoIcon.svelte";
 
   export let name;
 </script>

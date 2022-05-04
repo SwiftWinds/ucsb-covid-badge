@@ -2,7 +2,7 @@
   import ProfilePic from "./ProfilePic.svelte";
   import { name, permNum, pronouns } from "../stores";
   import { createEventDispatcher } from "svelte";
-  import { pronounsChoices } from "./form/Form.svelte";
+  import { pronounsChoices } from "./Form.svelte";
   import CloseIcon from "./icons/CloseIcon.svelte";
 
   export let time;

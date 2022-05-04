@@ -25,8 +25,7 @@
   }
 
   span {
-    box-shadow: rgba(0, 0, 0, 0.14) 0 2px 2px 0,
-    rgba(0, 0, 0, 0.12) 0 3px 1px -2px, rgba(0, 0, 0, 0.2) 0 1px 5px 0;
+    box-shadow: var(--btn-box-shadow);
 
     display: inline-block;
     font-size: 14px;
@@ -35,7 +34,7 @@
     border-radius: 2px;
     padding: 0 16px;
 
-    color: var(--btn-text);
+    color: var(--grad-btn-text);
     background: linear-gradient(to right, var(--grad-start), var(--grad-end));
     letter-spacing: 0.5px;
     transition: background-color 0.2s ease-out;
@@ -46,8 +45,7 @@
   }
 
   span:hover {
-    box-shadow: rgba(0, 0, 0, 0.14) 0 3px 3px 0, rgba(0, 0, 0, 0.12) 0 1px 7px 0,
-    rgba(0, 0, 0, 0.2) 0 3px 1px -1px;
+    box-shadow: var(--btn-hover-box-shadow);
     background: var(--btn-hover);
   }
 
