@@ -1,8 +1,8 @@
 <script lang="ts">
   import Badge from "../lib/Badge.svelte";
   import Form from "../lib/Form.svelte";
-  import dayjs from "dayjs";
   import SettingsBtn from "../lib/inputs/buttons/SettingsBtn.svelte";
+  import dayjs from "dayjs";
 
   let showBadge = false;
   let lastOpened = dayjs();
