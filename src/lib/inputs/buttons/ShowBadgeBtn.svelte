@@ -1,16 +1,16 @@
 <script lang="ts">
-  import InputBtn from "./base/InputBtn.svelte";
+  import GradBtn from "./base/GradBtn.svelte";
   import BadgeIcon from "../../icons/BadgeIcon.svelte";
 </script>
 
-<InputBtn type="submit" variant="wide">
+<GradBtn type="submit" variant="wide">
   <span class="icon">
     <BadgeIcon />
   </span>
   <span class="text">
     Show Badge
   </span>
-</InputBtn>
+</GradBtn>
 
 <style lang="postcss">
   span :global(svg) {

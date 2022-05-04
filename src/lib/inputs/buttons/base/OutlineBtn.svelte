@@ -1,61 +1,116 @@
 <script lang="ts">
-  export let variant;
+  export let href;
 </script>
 
-<div>
-  <span class={variant}>
-    <slot />
-    <input {...$$restProps} on:change />
-  </span>
+<div class="wrapper">
+  <a class="btn" {href}>
+    <div class="inner">
+      <span class="icon">
+        <slot name="icon" />
+      </span>
+      <span class="label">
+        <slot />
+      </span>
+    </div>
+  </a>
 </div>
 
 <style lang="postcss">
-  div {
-    margin: 2rem;
+  .label {
+    margin-left: 5px;
+  }
+
+  .icon {
+    position: absolute;
+    top: -1px;
+    left: 16px;
+  }
+
+  .wrapper, .inner {
     display: grid;
     place-items: center;
   }
 
-  .wide {
-    width: 350px;
-  }
-
-  .high-line-height {
-    line-height: 36px;
-  }
-
-  span {
-    box-shadow: var(--btn-box-shadow);
-
-    display: inline-block;
-    font-size: 14px;
+  .btn {
+    width: 344px;
+    color: var(--text);
+    display: grid;
+    place-items: center;
+    height: 86px;
+    font-size: 1.8rem;
+    float: left;
+    font-weight: bold;
     text-transform: uppercase;
-    vertical-align: middle;
-    border-radius: 2px;
-    padding: 0 16px;
-
-    color: var(--grad-btn-text);
-    background: linear-gradient(to right, var(--grad-start), var(--grad-end));
-    letter-spacing: 0.5px;
-    transition: background-color 0.2s ease-out;
     cursor: pointer;
-
-    position: relative;
-    overflow: hidden;
+    text-decoration: none;
   }
 
-  span:hover {
+  .btn {
+    position: relative;
+    border: 4px solid transparent;
+    border-radius: 6px;
+    background: var(--bg);
+    background-clip: padding-box;
+    padding: 10px;
+    /* just to show box-shadow still works fine */
+  }
+
+  .btn::after {
+    position: absolute;
+    top: -8px;
+    bottom: -8px;
+    left: -8px;
+    right: -8px;
+    background: linear-gradient(to right, var(--grad-start), var(--grad-end));
+    content: "";
+    z-index: -1;
+    border-radius: 2px;
+    box-shadow: var(--btn-box-shadow);
+  }
+
+  .btn:hover::after {
     box-shadow: var(--btn-hover-box-shadow);
     background: var(--btn-hover);
   }
 
-  input {
-    position: absolute;
-    top: 0;
-    right: 0;
-    opacity: 0;
+  .inner {
+    width: 110%;
+    height: 150%;
+    transform-style: preserve-3d;
+  }
 
-    width: 100%;
-    height: 100%;
+  .inner:before {
+    content: "";
+    position: absolute;
+    background: var(--btn-hover);
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 100%;
+    transform: translateZ(-1px);
+    -webkit-transition: bottom 0.117s ease-in;
+  }
+
+  .inner:hover {
+    color: var(--grad-btn-text);
+  }
+
+  .inner:hover:before {
+    bottom: 0;
+  }
+
+  .icon :global(svg) {
+    font-size: 40px;
+    line-height: 1em;
+  }
+
+  .icon {
+    display: grid;
+    place-items: center;
+    height: 36px;
+    font-size: 1.8rem;
+    float: left;
+    margin: 24px 3px 26px 22px;
+    font-weight: bold;
   }
 </style>
