@@ -1,15 +1,17 @@
 <script>
   import BackIcon from "../lib/icons/BackIcon.svelte";
+  import Header from "../lib/Header.svelte";
 </script>
 
-<div class="settings">
+<Header />
+<main class="settings">
   <div class="title">
     <a class="icon" href="/">
       <BackIcon />
     </a>
     <h2>User Settings</h2>
   </div>
-</div>
+</main>
 
 <style lang="postcss">
   h2 {

@@ -1,6 +1,7 @@
 <script lang="ts">
   import Badge from "../lib/Badge.svelte";
   import Form from "../lib/Form.svelte";
+  import Header from "../lib/Header.svelte";
   import SettingsBtn from "../lib/inputs/buttons/SettingsBtn.svelte";
   import dayjs from "dayjs";
 
@@ -14,8 +15,11 @@
 </script>
 
 {#if !showBadge}
-  <Form on:submit={toggleShowBadge} />
-  <SettingsBtn />
+  <Header />
+  <main>
+    <Form on:submit={toggleShowBadge} />
+    <SettingsBtn />
+  </main>
 {:else}
   <Badge time={lastOpened} on:close={toggleShowBadge} />
 {/if}
