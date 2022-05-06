@@ -6,7 +6,7 @@ export const post: RequestHandler = async ({ request }) => {
   return {
     status: 200,
     headers: {
-      "Set-Cookie": `theme=${theme}; SameSite=Strict; HttpOnly; Secure`,
+      "Set-Cookie": `theme=${theme}; SameSite=Strict; HttpOnly; Secure; Path=/`,
     },
   };
 };
