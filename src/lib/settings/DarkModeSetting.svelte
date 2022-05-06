@@ -1,7 +1,7 @@
 <script lang="ts">
   import DarkModeIcon from "../icons/DarkModeIcon.svelte";
   import { setTheme, theme, Theme } from "../../stores.ts";
-  import Setting from "./base/Setting.svelte";
+  import ToggleSetting from "./base/ToggleSetting.svelte";
 
   const handleThemeChange = async (e) => {
     const theme = e.target.checked ? Theme.Dark : Theme.Light;
@@ -9,14 +9,14 @@
   };
 </script>
 
-<Setting
+<ToggleSetting
   checked={$theme === Theme.Dark}
   on:change={handleThemeChange}
   setting="dark-mode"
 >
   <DarkModeIcon slot="icon" />
   Dark Mode
-</Setting>
+</ToggleSetting>
 
 <style lang="postcss">
   :global(#theme-container.dark [setting="dark-mode"]) {

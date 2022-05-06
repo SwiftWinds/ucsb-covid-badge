@@ -3,9 +3,17 @@
   import Form from "../lib/Form.svelte";
   import Header from "../lib/Header.svelte";
   import SettingsBtn from "../lib/inputs/buttons/SettingsBtn.svelte";
+  import { badgeByDefault } from "../stores";
   import dayjs from "dayjs";
 
-  let showBadge = false;
+  import { afterNavigate } from "$app/navigation";
+
+  let previousPage;
+  afterNavigate((navigation) => {
+    previousPage = navigation?.from?.pathname;
+  });
+
+  $: showBadge = $badgeByDefault && !previousPage;
   let lastOpened = dayjs();
 
   const toggleShowBadge = () => {

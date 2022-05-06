@@ -1,24 +1,24 @@
 <script lang="ts">
-  import { setTheme, theme, Theme } from "../../stores.ts";
-  import Setting from "./base/Setting.svelte";
+  import { badgeByDefault, setBadgeByDefault } from "../../stores.ts";
+  import ToggleSetting from "./base/ToggleSetting.svelte";
   import BadgeIcon from "../icons/BadgeIcon.svelte";
 
-  const handleThemeChange = async (e) => {
-    const theme = e.target.checked ? Theme.Dark : Theme.Light;
-    await setTheme(theme);
+  const handleBadgeByDefaultChange = async (e) => {
+    const badgeByDefault = e.target.checked;
+    await setBadgeByDefault(badgeByDefault);
   };
 </script>
 
-<Setting
-  checked={$theme === Theme.Dark}
-  on:change={handleThemeChange}
+<ToggleSetting
+  checked={$badgeByDefault}
+  on:change={handleBadgeByDefaultChange}
   setting="badge-by-default"
 >
   <BadgeIcon slot="icon" />
   <div class="label">
     Show Badge By Default
   </div>
-</Setting>
+</ToggleSetting>
 
 <style lang="postcss">
   :global(#theme-container.dark [setting="badge-by-default"]) {

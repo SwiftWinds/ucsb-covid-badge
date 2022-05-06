@@ -1,7 +1,8 @@
 <script lang="ts">
   import { setTheme, theme, Theme } from "../../stores.ts";
-  import Setting from "./base/Setting.svelte";
   import TrashIcon from "../icons/TrashIcon.svelte";
+  import Setting from "./base/Setting.svelte";
+  import DangerBtn from "../inputs/buttons/DangerBtn.svelte";
 
   const handleThemeChange = async (e) => {
     const theme = e.target.checked ? Theme.Dark : Theme.Light;
@@ -16,6 +17,7 @@
 >
   <TrashIcon slot="icon" />
   Clear badge
+  <DangerBtn slot="input" />
 </Setting>
 
 <style lang="postcss">

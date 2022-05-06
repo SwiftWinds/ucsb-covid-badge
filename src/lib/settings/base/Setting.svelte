@@ -1,8 +1,7 @@
 <script lang="ts">
-  import Toggle from "./Toggle.svelte";
   import SettingIcon from "./SettingIcon.svelte";
 
-  export let checked, setting;
+  export let setting;
 </script>
 
 <div class="setting">
@@ -14,7 +13,7 @@
       <slot />
     </div>
   </div>
-  <Toggle {checked} on:change />
+  <slot name="input" />
 </div>
 
 <style lang="postcss">

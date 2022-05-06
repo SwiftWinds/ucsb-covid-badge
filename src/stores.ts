@@ -43,10 +43,29 @@ export const theme = derived<SessionStore, Theme>(
   }
 );
 
+export const badgeByDefault = derived<SessionStore, boolean>(
+  session,
+  async ($session, set) => {
+    if ($session.badgeByDefault) {
+      set($session.badgeByDefault);
+    } else {
+      set(false);
+    }
+  }
+);
+
 export const setTheme = async (theme: Theme) => {
   session.update(($session) => ({ ...$session, theme }));
   await fetch("/api/theme", {
     method: "POST",
     body: JSON.stringify({ theme }),
+  });
+};
+
+export const setBadgeByDefault = async (badgeByDefault: boolean) => {
+  session.update(($session) => ({ ...$session, badgeByDefault }));
+  await fetch("/api/badgeByDefault", {
+    method: "POST",
+    body: JSON.stringify({ badgeByDefault }),
   });
 };
