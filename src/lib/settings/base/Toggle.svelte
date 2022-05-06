@@ -1,11 +1,15 @@
 <script lang="ts">
   export let checked;
 </script>
-
-<label class="form-switch">
-  <input {checked} on:change type="checkbox">
-  <i></i>
-</label>
+<div class="right">
+  <div>
+    {checked ? "On" : "Off"}
+  </div>
+  <label class="form-switch">
+    <input {checked} on:change type="checkbox">
+    <i></i>
+  </label>
+</div>
 
 <style lang="postcss">
   :root {
@@ -18,6 +22,15 @@
 
   :global(#theme-container.light) {
     --form-switch-bg: #e6e6e6;
+  }
+
+  .right {
+    display: flex;
+    align-items: center;
+
+    & :first-child {
+      margin-right: 0.75rem;
+    }
   }
 
   .form-switch {
