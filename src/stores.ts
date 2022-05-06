@@ -26,17 +26,20 @@ export const pronouns = persistentStore("pronouns");
 export const profilePic = persistentStore("profilePic", noImgFallback);
 export const permNum = persistentStore("permNum");
 
-export const theme = derived<SessionStore, Theme>(session, ($session, set) => {
-  if ($session.theme) {
-    set($session.theme);
-  } else if (browser) {
-    set(
-      window.matchMedia("(prefers-color-scheme: dark)").matches
+export const theme = derived<SessionStore, Theme>(
+  session,
+  async ($session, set) => {
+    if ($session.theme) {
+      set($session.theme);
+    } else if (browser) {
+      const theme = window.matchMedia("(prefers-color-scheme: dark)").matches
         ? Theme.Dark
-        : Theme.Light
-    );
+        : Theme.Light;
+      set(theme);
+      await setTheme(theme);
+    }
   }
-});
+);
 
 export const setTheme = async (theme: Theme) => {
   session.update(($session) => ({ ...$session, theme }));

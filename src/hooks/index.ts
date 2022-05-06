@@ -13,7 +13,6 @@ export const getCookieValue = (
 
 export const getSession: GetSession = ({ request }) => {
   const cookie = request.headers.get("cookie");
-  console.log(cookie);
   const theme = getCookieValue(cookie, "theme") as Theme | null;
   return { theme };
 };
