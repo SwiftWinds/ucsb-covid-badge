@@ -37,6 +37,8 @@ export const theme = derived<SessionStore, Theme>(
         : Theme.Light;
       set(theme);
       await setTheme(theme);
+    } else {
+      set(Theme.Light);
     }
   }
 );
