@@ -12,9 +12,7 @@
     max-width: 170px;
   }
 
-  @media (prefers-color-scheme: dark) {
-    .darken {
-      filter: brightness(65%);
-    }
+  :global(#theme-container.dark .darken) {
+    filter: brightness(65%);
   }
 </style>

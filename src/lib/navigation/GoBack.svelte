@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
   import BackIcon from "../icons/BackIcon.svelte";
 </script>
 

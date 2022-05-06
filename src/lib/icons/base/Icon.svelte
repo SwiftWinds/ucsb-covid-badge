@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
   import Icon, { addCollection } from "@iconify/svelte/dist/OfflineIcon.svelte";
 
   export let prefix;
@@ -19,11 +19,11 @@
     prefix,
     icons: {
       [name]: {
-        body, // https://api.iconify.design/[prefix].json?icons=[name]
-      },
+        body // https://api.iconify.design/[prefix].json?icons=[name]
+      }
     },
     width,
-    height,
+    height
   });
 </script>
 

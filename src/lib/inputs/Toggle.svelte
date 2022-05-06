@@ -1,19 +1,23 @@
+<script lang="ts">
+  export let checked;
+</script>
+
 <label class="form-switch">
-  <input type="checkbox">
+  <input {checked} on:change type="checkbox">
   <i></i>
 </label>
 
 <style lang="postcss">
   :root {
     --form-switch-color: #5965fa;
+  }
 
-    @media (prefers-color-scheme: dark) {
-      --form-switch-bg: #39383d;
-    }
+  :global(#theme-container.dark) {
+    --form-switch-bg: #39383d;
+  }
 
-    @media (prefers-color-scheme: light) {
-      --form-switch-bg: #e6e6e6;
-    }
+  :global(#theme-container.light) {
+    --form-switch-bg: #e6e6e6;
   }
 
   .form-switch {
