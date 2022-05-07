@@ -1,4 +1,4 @@
-#theme-container.light {
+html[data-theme="light"] {
   --bg: white;
   --text: black;
   --grad-start: #7928ca;
@@ -12,7 +12,7 @@
   --outline-btn-text: var(--text);
 }
 
-#theme-container.dark {
+html[data-theme="dark"] {
   --bg: #181a1b;
   --text: #e8e6e3;
   --grad-start: #6120a2;
@@ -35,13 +35,4 @@
 
 :root {
   font-family: "Inter", sans-serif;
-}
-
-#theme-container {
-  /* make the container take up the entire screen
-     so that background applies to entire website */
-  width: 100vw;
-  height: 100vh;
-  background: var(--bg);
-  position: fixed;
 }

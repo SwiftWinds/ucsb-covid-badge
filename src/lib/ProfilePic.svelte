@@ -12,7 +12,7 @@
     max-width: 170px;
   }
 
-  :global(#theme-container.dark .darken) {
+  :global([data-theme="dark"] .darken) {
     filter: brightness(65%);
   }
 </style>

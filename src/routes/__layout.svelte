@@ -1,10 +1,8 @@
 <script lang="ts">
   import "../app.css";
-  import { theme } from "../stores.ts";
+
+  import SvelteTheme from "svelte-themes/SvelteTheme.svelte";
 </script>
 
-<div class={$theme} id="theme-container">
-  <div id="app-content">
-    <slot />
-  </div>
-</div>
+<SvelteTheme />
+<slot />

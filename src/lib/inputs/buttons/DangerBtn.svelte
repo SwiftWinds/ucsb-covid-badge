@@ -1,7 +1,8 @@
 <script lang="ts">
   import ThemeableBtn from "./base/ThemeableBtn.svelte";
 
-  export let variant, ref;
+  export let variant = "";
+  export let ref = null;
 </script>
 
 <ThemeableBtn
@@ -20,13 +21,13 @@
     --btn-text: white;
   }
 
-  :global(#theme-container.dark [theme="danger"]) {
+  :global([data-theme="dark"] [theme="danger"]) {
     --btn-bg: #dc2626;
     --btn-bg-hover: #b91c1c;
     --btn-ring: #7f1d1d;
   }
 
-  :global(#theme-container.light [theme="danger"]) {
+  :global([data-theme="light"] [theme="danger"]) {
     --btn-bg: #ef4444;
     --btn-bg-hover: #dc2626;
     --btn-ring: #fca5a5;

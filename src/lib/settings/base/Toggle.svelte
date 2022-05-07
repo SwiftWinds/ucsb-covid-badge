@@ -16,11 +16,11 @@
     --form-switch-color: #5965fa;
   }
 
-  :global(#theme-container.dark) {
+  :global([data-theme="dark"]) {
     --form-switch-bg: #39383d;
   }
 
-  :global(#theme-container.light) {
+  :global([data-theme="light"]) {
     --form-switch-bg: #e6e6e6;
   }
 

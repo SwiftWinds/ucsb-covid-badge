@@ -37,7 +37,8 @@
   },
   "type": "module",
   "dependencies": {
-    "dayjs": "^1.11.1"
+    "dayjs": "^1.11.1",
+    "svelte-themes": "^0.0.98"
   },
   "repository": {
     "type": "git",

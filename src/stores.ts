@@ -2,6 +2,7 @@ import { browser } from "$app/env";
 import { session } from "$app/stores";
 import { derived, writable } from "svelte/store";
 import type { SessionStore } from "./hooks";
+import themeStore from "svelte-themes";
 
 export enum Theme {
   Light = "light",
@@ -26,22 +27,15 @@ export const pronouns = persistentStore("pronouns");
 export const profilePic = persistentStore("profilePic", noImgFallback);
 export const permNum = persistentStore("permNum");
 
-export const theme = derived<SessionStore, Theme>(
-  session,
-  async ($session, set) => {
-    if ($session.theme) {
-      set($session.theme);
-    } else if (browser) {
-      const theme = window.matchMedia("(prefers-color-scheme: dark)").matches
-        ? Theme.Dark
-        : Theme.Light;
-      set(theme);
-      await setTheme(theme);
-    } else {
-      set(Theme.Light);
-    }
+export const theme = derived(themeStore, ($themeStore, set) => {
+  let theme = $themeStore.theme as Theme | "system";
+  if (theme === "system" && browser) {
+    theme = window.matchMedia("(prefers-color-scheme: dark)").matches
+      ? Theme.Dark
+      : Theme.Light;
   }
-);
+  set(theme);
+});
 
 export const badgeByDefault = derived<SessionStore, boolean>(
   session,
@@ -53,14 +47,6 @@ export const badgeByDefault = derived<SessionStore, boolean>(
     }
   }
 );
-
-export const setTheme = async (theme: Theme) => {
-  session.update(($session) => ({ ...$session, theme }));
-  await fetch("/api/theme", {
-    method: "POST",
-    body: JSON.stringify({ theme }),
-  });
-};
 
 export const setBadgeByDefault = async (badgeByDefault: boolean) => {
   session.update(($session) => ({ ...$session, badgeByDefault }));

@@ -58,11 +58,11 @@
 </div>
 
 <style lang="postcss">
-  :global(#theme-container.light) {
+  :global([data-theme="light"]) {
     --dlg-bg: white;
   }
 
-  :global(#theme-container.dark) {
+  :global([data-theme="dark"]) {
     --dlg-bg: #1d1d1d;
   }
 
