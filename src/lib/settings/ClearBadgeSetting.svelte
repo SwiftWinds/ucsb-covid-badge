@@ -3,6 +3,13 @@
   import Setting from "./base/Setting.svelte";
   import DangerBtn from "../inputs/buttons/DangerBtn.svelte";
   import ConfirmModal from "../ConfirmModal.svelte";
+  import {
+    name,
+    noImgFallback,
+    permNum,
+    profilePic,
+    pronouns
+  } from "../../stores";
 
   let isModalShown = false;
 
@@ -16,7 +23,10 @@
 
   const handleClearBadge = () => {
     handleCloseModal();
-    localStorage.clear();
+    name.set("");
+    permNum.set("");
+    profilePic.set(noImgFallback);
+    pronouns.set("");
   };
 </script>
 

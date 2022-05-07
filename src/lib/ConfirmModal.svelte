@@ -10,8 +10,6 @@
   let isClosing = false;
   let confirmBtn;
 
-  $: console.log(confirmBtn);
-
   const hide = async () => {
     isClosing = true;
     await sleep(200);
@@ -37,11 +35,11 @@
   });
 </script>
 
-<div class="du-dialog snipcss-Eo2Hx" class:isClosing class:isOpened
+<div class="du-dialog" class:isClosing class:isOpened
      on:click={handleClose}>
   <div class="dlg-wrapper" on:click|stopPropagation tabindex="0">
     <div
-      class="dlg-header tether-target-attached-top tether-element-attached-top tether-element-attached-center tether-target-attached-center">
+      class="dlg-header">
       Warning
     </div>
     <div class="dlg-content">
@@ -60,8 +58,13 @@
 </div>
 
 <style lang="postcss">
-  @import url("//fonts.googleapis.com/css?family=Roboto");
-  @import url("https://fonts.googleapis.com/css?family=Poppins|Roboto");
+  :global(#theme-container.light) {
+    --dlg-bg: white;
+  }
+
+  :global(#theme-container.dark) {
+    --dlg-bg: #1d1d1d;
+  }
 
   .du-dialog {
     position: fixed;
@@ -97,7 +100,7 @@
     display: flex;
     flex-direction: column;
     justify-content: space-around;
-    background-color: #ffffff;
+    background-color: var(--dlg-bg);
     outline: none;
     border-radius: 4px;
     transform: scale(.8);
@@ -129,7 +132,7 @@
   }
 
   .du-dialog .dlg-content {
-    padding: 5px 24px 5px 24px;
+    padding: 5px 24px;
     color: #757575;
     font-size: 16px;
     line-height: 1.5rem;
@@ -141,34 +144,5 @@
   .du-dialog .dlg-actions {
     padding: 8px;
     text-align: right;
-  }
-
-  .du-dialog .dlg-action {
-    font-family: inherit;
-    font-size: 14px;
-    border: none;
-    cursor: pointer;
-    padding: 0 12px;
-    min-width: 72px;
-    line-height: 36px;
-    letter-spacing: 0.07em;
-    font-weight: bold;
-    color: #3f51b5;
-    text-transform: uppercase;
-    background-color: transparent;
-    border-radius: 4px;
-    outline: none;
-    transition: background-color .28s linear;
-    will-change: background-color;
-  }
-
-  .du-dialog .dlg-action {
-    &:hover, &:focus {
-      background-color: #f5f5f5;
-    }
-  }
-
-  .du-dialog .dlg-action + .dlg-action {
-    margin-left: 8px;
   }
 </style>
