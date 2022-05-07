@@ -1,8 +1,8 @@
 import { browser } from "$app/env";
 import { session } from "$app/stores";
 import { derived, writable } from "svelte/store";
-import type { SessionStore } from "./hooks";
 import themeStore from "svelte-themes";
+import type { SessionStore } from "./hooks";
 
 export enum Theme {
   Light = "light",

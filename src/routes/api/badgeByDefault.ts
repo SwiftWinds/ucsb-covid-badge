@@ -6,7 +6,7 @@ export const post: RequestHandler = async ({ request }) => {
   return {
     status: 200,
     headers: {
-      "Set-Cookie": `badgeByDefault=${badgeByDefault}; SameSite=Strict; HttpOnly; Secure; Path=/`,
+      "Set-Cookie": `badgeByDefault=${badgeByDefault}; SameSite=Strict; HttpOnly; Path=/`,
     },
   };
 };

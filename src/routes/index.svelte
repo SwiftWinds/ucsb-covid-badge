@@ -1,3 +1,7 @@
+<script context="module">
+  export const prerender = false;
+</script>
+
 <script lang="ts">
   import Badge from "../lib/Badge.svelte";
   import Form from "../lib/Form.svelte";
