@@ -1,4 +1,4 @@
-html[data-theme="light"] {
+[data-theme="light"] {
   --bg: white;
   --text: black;
   --grad-start: #7928ca;
@@ -12,7 +12,7 @@ html[data-theme="light"] {
   --outline-btn-text: var(--text);
 }
 
-html[data-theme="dark"] {
+[data-theme="dark"] {
   --bg: #181a1b;
   --text: #e8e6e3;
   --grad-start: #6120a2;

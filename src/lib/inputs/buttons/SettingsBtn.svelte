@@ -3,7 +3,15 @@
   import SettingsIcon from "../../icons/SettingsIcon.svelte";
 </script>
 
-<OutlineBtn href="/settings">
-  <SettingsIcon slot="icon" />
-  Settings
-</OutlineBtn>
+<div class="settings-btn">
+  <OutlineBtn href="/settings">
+    <SettingsIcon slot="icon" />
+    Settings
+  </OutlineBtn>
+</div>
+
+<style lang="postcss">
+  .settings-btn {
+    margin-bottom: 2rem;
+  }
+</style>
