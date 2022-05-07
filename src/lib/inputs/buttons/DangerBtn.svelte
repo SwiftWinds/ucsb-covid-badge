@@ -6,8 +6,9 @@
 
 <ThemeableBtn
   {...$$restProps}
+  bind:ref
   on:click
-  {ref}
+  theme="danger"
   type="button"
   {variant}>
   Clear
@@ -15,6 +16,10 @@
 
 
 <style>
+  :global([theme="danger"]) {
+    --btn-text: white;
+  }
+
   :global(#theme-container.dark [theme="danger"]) {
     --btn-bg: #dc2626;
     --btn-bg-hover: #b91c1c;

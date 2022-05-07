@@ -2,6 +2,7 @@
   import { createEventDispatcher, onMount } from "svelte";
   import sleep from "./utils/sleep";
   import DangerBtn from "./inputs/buttons/DangerBtn.svelte";
+  import NeutralBtn from "./inputs/buttons/NeutralBtn.svelte";
 
   const dispatch = createEventDispatcher();
 
@@ -47,10 +48,9 @@
       Are you sure you'd like to clear the badge? This action cannot be undone
     </div>
     <div class="dlg-actions">
-      <button class="dlg-action" on:click={handleClose}
-              tabindex="2">
-        Cancel
-      </button>
+      <NeutralBtn class="dlg-action" on:click={handleClose}
+                  tabindex="2" variant="bold">
+      </NeutralBtn>
       <DangerBtn bind:ref={confirmBtn}
                  on:click={handleConfirm}
                  tabindex="1"
@@ -64,7 +64,6 @@
   @import url("https://fonts.googleapis.com/css?family=Poppins|Roboto");
 
   .du-dialog {
-    font-family: Roboto, sans-serif;
     position: fixed;
     top: 0;
     left: 0;

@@ -13,7 +13,7 @@
 </button>
 
 
-<style>
+<style lang="postcss">
   button {
     margin-right: 0.5rem;
     border-radius: 0.5rem;
@@ -24,18 +24,17 @@
     line-height: 1.25rem;
 
     font-weight: 500;
-    color: white;
-  }
+    color: var(--btn-text);
 
-  button:hover {
-    background-color: var(--btn-bg-hover);
-  }
+    transition: background-color .28s linear, box-shadow .28s ease;
+    will-change: background-color, box-shadow;
 
-  button:focus {
-    outline: 2px solid transparent;
-    outline-offset: 2px;
-
-    box-shadow: 0 0 0 4px var(--btn-ring);
+    &:hover, &:focus {
+      background-color: var(--btn-bg-hover);
+      outline: 2px solid transparent;
+      outline-offset: 2px;
+      box-shadow: 0 0 0 4px var(--btn-ring);
+    }
   }
 
   .bold {
