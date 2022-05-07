@@ -48,9 +48,9 @@
       Are you sure you'd like to clear the badge? This action cannot be undone
     </div>
     <div class="dlg-actions">
-      <NeutralBtn class="dlg-action" on:click={handleClose}
-                  tabindex="2" variant="bold">
-      </NeutralBtn>
+      <NeutralBtn on:click={handleClose}
+                  tabindex="2"
+                  variant="bold" />
       <DangerBtn bind:ref={confirmBtn}
                  on:click={handleConfirm}
                  tabindex="1"
