@@ -1,23 +1,34 @@
 <script lang="ts">
-  import { setTheme, theme, Theme } from "../../stores.ts";
   import TrashIcon from "../icons/TrashIcon.svelte";
   import Setting from "./base/Setting.svelte";
   import DangerBtn from "../inputs/buttons/DangerBtn.svelte";
+  import ConfirmModal from "../ConfirmModal.svelte";
 
-  const handleThemeChange = async (e) => {
-    const theme = e.target.checked ? Theme.Dark : Theme.Light;
-    await setTheme(theme);
+  let isModalShown = false;
+
+  const handleShowModal = () => {
+    isModalShown = true;
+  };
+
+  const handleCloseModal = () => {
+    isModalShown = false;
+  };
+
+  const handleClearBadge = () => {
+    handleCloseModal();
+    localStorage.clear();
   };
 </script>
 
+{#if isModalShown}
+  <ConfirmModal on:close={handleCloseModal} on:confirm={handleClearBadge} />
+{/if}
 <Setting
-  checked={$theme === Theme.Dark}
-  on:change={handleThemeChange}
   setting="clear-badge"
 >
   <TrashIcon slot="icon" />
   Clear badge
-  <DangerBtn slot="input" />
+  <DangerBtn on:click={handleShowModal} slot="input" />
 </Setting>
 
 <style lang="postcss">
