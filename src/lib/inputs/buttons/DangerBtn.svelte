@@ -15,7 +15,7 @@
 </ThemeableBtn>
 
 
-<style>
+<style lang="postcss">
   :global([theme="danger"]) {
     --btn-text: white;
   }
