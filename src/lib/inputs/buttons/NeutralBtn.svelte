@@ -11,7 +11,7 @@
   theme="neutral"
   type="button"
   {variant}>
-  Clear
+  Cancel
 </ThemeableBtn>
 
 
