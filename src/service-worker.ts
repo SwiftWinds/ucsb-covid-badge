@@ -3,7 +3,7 @@ import { build, files } from "$service-worker";
 const version = __KIT_VERSION__;
 
 const worker = self as unknown as ServiceWorkerGlobalScope;
-const STATIC_CACHE_NAME = `cache${version}`;
+const CACHE_NAME = `cache${version}`;
 
 // hard-coded list of app routes we want to preemptively cache
 const routes = ["/", "/settings"];
@@ -39,7 +39,7 @@ worker.addEventListener("install", (event) => {
   console.log("installing service worker");
   event.waitUntil(
     caches
-      .open(STATIC_CACHE_NAME)
+      .open(CACHE_NAME)
       .then((cache) => {
         console.log("caching static assets", toCache);
         return cache.addAll(toCache);
@@ -56,7 +56,7 @@ worker.addEventListener("activate", (event) => {
     caches.keys().then(async (keys) => {
       // delete old caches
       for (const key of keys) {
-        if (key !== STATIC_CACHE_NAME) {
+        if (key !== CACHE_NAME) {
           console.log(`deleting ${key}`);
           await caches.delete(key);
         }
@@ -68,32 +68,31 @@ worker.addEventListener("activate", (event) => {
 });
 
 /**
- * Fetch the asset from the network and store it in the cache.
- * Fall back to the cache if the user is offline.
+ * Immediately return with the cached version of the requested file
+ * Fall back to the network if the file is not in the cache
+ * Revalidate the cached version each request
  */
-async function fetchAndCache(request: Request) {
-  console.log("fetchAndCache()", request.url);
-  const cache = await caches.open(STATIC_CACHE_NAME);
-  console.log("cache opened", cache);
-  try {
-    const response = await fetch(request);
-    console.log("fetched", response);
-    cache.put(request, response.clone());
-    console.log("cached", request.url);
-    return response;
-  } catch (err) {
-    console.log("error fetching", err);
-    const response = await cache.match(request);
-    console.log("cached", response);
-    if (response) {
-      return response;
-    }
+function staleWhileRevalidate(event: FetchEvent) {
+  event.respondWith(
+    caches.open(CACHE_NAME).then((cache) => {
+      console.log("fetchAndCache()", event.request.url);
+      console.log("cache opened", cache);
+      return cache.match(event.request).then((cachedResponse) => {
+        console.log("cachedResponse", cachedResponse);
 
-    throw err;
-  }
+        const fetchedResponse = fetch(event.request).then((networkResponse) => {
+          cache.put(event.request, networkResponse.clone());
+
+          return networkResponse;
+        });
+
+        return cachedResponse || fetchedResponse;
+      });
+    })
+  );
 }
 
-worker.addEventListener("fetch", (event) => {
+worker.addEventListener("fetch", (event: FetchEvent) => {
   if (event.request.method !== "GET" || event.request.headers.has("range")) {
     return;
   }
@@ -115,18 +114,6 @@ worker.addEventListener("fetch", (event) => {
   console.log("skipBecauseUncached", skipBecauseUncached);
 
   if (isHttp && !isDevServerRequest && !skipBecauseUncached) {
-    event.respondWith(
-      (async () => {
-        // always serve static files and bundler-generated assets from cache.
-        // if your application has other URLs with data that will never change,
-        // set this variable to true for them, and they will only be fetched once.
-        const cachedAsset =
-          isStaticAsset && (await caches.match(event.request));
-
-        console.log("cachedAsset", cachedAsset);
-
-        return cachedAsset || fetchAndCache(event.request);
-      })()
-    );
+    staleWhileRevalidate(event);
   }
 });
