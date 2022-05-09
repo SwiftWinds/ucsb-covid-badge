@@ -3,13 +3,10 @@
   import ToggleSetting from "./base/ToggleSetting.svelte";
   import BadgeIcon from "../icons/BadgeIcon.svelte";
 
-  $: console.log("badgeByDefault", $badgeByDefault);
-
   const handleBadgeByDefaultChange = async (e) => {
     const badgeByDefault = e.target.checked;
     await setBadgeByDefault(badgeByDefault);
     const version = __KIT_VERSION__;
-    console.log("version", version);
 
     // revalidate dependent routes
     const routes = ["/", "/settings"];
@@ -19,10 +16,7 @@
       const response = await fetch(route, {
         credentials: "include"
       });
-      const clone = response.clone();
-      const text = await response.text();
-      console.log("fetched", route, text);
-      await cache.put(route, clone);
+      await cache.put(route, response);
     }));
   };
 </script>
