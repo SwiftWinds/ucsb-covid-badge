@@ -8,8 +8,6 @@
     await setBadgeByDefault(badgeByDefault);
     const version = __KIT_VERSION__;
 
-    console.log("version", version);
-
     // revalidate dependent routes
     const routes = ["/", "/settings"];
     const cache = await caches.open(`cache${version}`);
