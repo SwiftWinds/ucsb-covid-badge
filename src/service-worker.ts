@@ -36,10 +36,12 @@ const toCache = [...ourAssets, ...customAssets];
 const staticAssets = new Set(toCache);
 
 worker.addEventListener("install", (event) => {
+  console.log("installing service worker");
   event.waitUntil(
     caches
       .open(STATIC_CACHE_NAME)
       .then((cache) => {
+        console.log("caching static assets", toCache);
         return cache.addAll(toCache);
       })
       .then(() => {
@@ -49,11 +51,13 @@ worker.addEventListener("install", (event) => {
 });
 
 worker.addEventListener("activate", (event) => {
+  console.log("activating service worker");
   event.waitUntil(
     caches.keys().then(async (keys) => {
       // delete old caches
       for (const key of keys) {
         if (key !== STATIC_CACHE_NAME) {
+          console.log(`deleting ${key}`);
           await caches.delete(key);
         }
       }
@@ -68,13 +72,19 @@ worker.addEventListener("activate", (event) => {
  * Fall back to the cache if the user is offline.
  */
 async function fetchAndCache(request: Request) {
+  console.log("fetchAndCache()", request.url);
   const cache = await caches.open(STATIC_CACHE_NAME);
+  console.log("cache opened", cache);
   try {
     const response = await fetch(request);
+    console.log("fetched", response);
     cache.put(request, response.clone());
+    console.log("cached", request.url);
     return response;
   } catch (err) {
+    console.log("error fetching", err);
     const response = await cache.match(request);
+    console.log("cached", response);
     if (response) {
       return response;
     }
@@ -98,6 +108,12 @@ worker.addEventListener("fetch", (event) => {
   const skipBecauseUncached =
     event.request.cache === "only-if-cached" && !isStaticAsset;
 
+  console.log("fetching", url.href);
+  console.log("isHttp", isHttp);
+  console.log("isDevServerRequest", isDevServerRequest);
+  console.log("isStaticAsset", isStaticAsset);
+  console.log("skipBecauseUncached", skipBecauseUncached);
+
   if (isHttp && !isDevServerRequest && !skipBecauseUncached) {
     event.respondWith(
       (async () => {
@@ -106,6 +122,8 @@ worker.addEventListener("fetch", (event) => {
         // set this variable to true for them, and they will only be fetched once.
         const cachedAsset =
           isStaticAsset && (await caches.match(event.request));
+
+        console.log("cachedAsset", cachedAsset);
 
         return cachedAsset || fetchAndCache(event.request);
       })()
