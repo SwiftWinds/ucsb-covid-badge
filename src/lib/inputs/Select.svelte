@@ -47,6 +47,7 @@
   select:focus {
     font-weight: bold;
     outline: none;
+    /* we must use rgba() for 0% opacity */
     border-bottom: 1px solid rgba(0, 0, 0, 0);
   }
 

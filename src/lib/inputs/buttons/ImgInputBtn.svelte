@@ -1,11 +1,11 @@
 <script lang="ts">
-  import InputBtn from "./base/InputBtn.svelte";
-  import AddPhotoIcon from "../../../icons/AddPhotoIcon.svelte";
+  import GradBtn from "./base/GradBtn.svelte";
+  import AddPhotoIcon from "../../icons/AddPhotoIcon.svelte";
 
   export let name;
 </script>
 
-<InputBtn
+<GradBtn
   accept="image/*"
   {name}
   on:change
@@ -16,7 +16,7 @@
     <AddPhotoIcon />
   </span>
   Browse
-</InputBtn>
+</GradBtn>
 
 <style lang="postcss">
   span {

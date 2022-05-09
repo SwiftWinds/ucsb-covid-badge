@@ -63,7 +63,7 @@
 
   input:focus {
     padding-bottom: 6px;
-    font-weight: 700;
+    font-weight: bold;
     border-bottom-width: 3px;
     border-image: linear-gradient(to right, var(--grad-start), var(--grad-end)) 1;
   }
@@ -75,7 +75,7 @@
     transition: 0.2s;
     font-size: 1rem;
     color: var(--label-selected);
-    font-weight: 700;
+    font-weight: bold;
   }
 
   /* reset input */

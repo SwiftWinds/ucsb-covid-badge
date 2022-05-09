@@ -1,9 +1,19 @@
 <script lang="ts">
   import Badge from "../lib/Badge.svelte";
-  import Form from "../lib/form/Form.svelte";
+  import Form from "../lib/Form.svelte";
+  import Header from "../lib/Header.svelte";
+  import SettingsBtn from "../lib/inputs/buttons/SettingsBtn.svelte";
+  import { badgeByDefault } from "../stores";
   import dayjs from "dayjs";
 
-  let showBadge = false;
+  import { afterNavigate } from "$app/navigation";
+
+  let previousPage;
+  afterNavigate((navigation) => {
+    previousPage = navigation?.from?.pathname;
+  });
+
+  $: showBadge = $badgeByDefault && !previousPage;
   let lastOpened = dayjs();
 
   const toggleShowBadge = () => {
@@ -13,29 +23,11 @@
 </script>
 
 {#if !showBadge}
-  <header>
-    <h1 title="UCSB COVID Badge">UCB</h1>
-  </header>
-  <Form on:submit={toggleShowBadge} />
+  <Header />
+  <main>
+    <Form on:submit={toggleShowBadge} />
+    <SettingsBtn />
+  </main>
 {:else}
   <Badge time={lastOpened} on:close={toggleShowBadge} />
 {/if}
-
-<style lang="postcss">
-  header {
-    display: grid;
-    place-items: center;
-  }
-
-  h1 {
-    font-weight: 800;
-    font-size: 8rem;
-    letter-spacing: 1rem;
-    display: inline-block;
-    background-image: linear-gradient(60deg, var(--grad-start), var(--grad-end));
-    background-size: 100%;
-    background-clip: text;
-    color: transparent;
-  }
-
-</style>

@@ -16,7 +16,8 @@
   },
   "devDependencies": {
     "@iconify/svelte": "^2.2.1",
-    "@sveltejs/adapter-static": "1.0.0-next.29",
+    "@rollup/plugin-replace": "^4.0.0",
+    "@sveltejs/adapter-auto": "1.0.0-next.40",
     "@sveltejs/kit": "next",
     "@typescript-eslint/eslint-plugin": "^5.22.0",
     "@typescript-eslint/parser": "^5.22.0",
@@ -29,6 +30,7 @@
     "postcss-nesting": "^10.1.4",
     "prettier": "^2.5.1",
     "prettier-plugin-svelte": "^2.5.0",
+    "rollup": "^2.72.1",
     "svelte": "^3.48.0",
     "svelte-check": "^2.2.6",
     "svelte-preprocess": "^4.10.1",
@@ -37,7 +39,8 @@
   },
   "type": "module",
   "dependencies": {
-    "dayjs": "^1.11.1"
+    "dayjs": "^1.11.1",
+    "svelte-themes": "^0.0.98"
   },
   "repository": {
     "type": "git",

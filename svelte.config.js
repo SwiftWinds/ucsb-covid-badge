@@ -1,5 +1,8 @@
-import adapter from "@sveltejs/adapter-static";
+import adapter from "@sveltejs/adapter-auto";
 import preprocess from "svelte-preprocess";
+import replace from "@rollup/plugin-replace";
+
+const version = +new Date();
 
 /** @type {import("@sveltejs/kit").Config} */
 const config = {
@@ -12,9 +15,13 @@ const config = {
   kit: {
     adapter: adapter(),
 
-    // prerender all pages except those that `export const prerender = false;`
-    prerender: {
-      default: true,
+    vite: {
+      plugins: [
+        replace({
+          preventAssignment: true,
+          values: { __KIT_VERSION__: version },
+        }),
+      ],
     },
   },
 };

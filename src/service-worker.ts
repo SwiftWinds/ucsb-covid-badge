@@ -1,15 +1,16 @@
-import { build, files, version } from "$service-worker";
+import { build, files } from "$service-worker";
+
+const version = __KIT_VERSION__;
 
 const worker = self as unknown as ServiceWorkerGlobalScope;
 const STATIC_CACHE_NAME = `cache${version}`;
-const APP_CACHE_NAME = `offline${version}`;
 
 // hard-coded list of app routes we want to preemptively cache
-const routes = ["/"];
+const routes = ["/", "/settings"];
 
 // hard-coded list of other assets necessary for page load outside our domain
 const customAssets = [
-  "https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800&display=swap",
+  "https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap",
   "https://unpkg.com/ress/dist/ress.min.css",
   "https://fonts.gstatic.com/s/inter/v11/UcC73FwrK3iLTeHuS_fvQtMwCp50KnMa1ZL7W0Q5nw.woff2",
 ];
@@ -52,7 +53,7 @@ worker.addEventListener("activate", (event) => {
     caches.keys().then(async (keys) => {
       // delete old caches
       for (const key of keys) {
-        if (key !== STATIC_CACHE_NAME && key !== APP_CACHE_NAME) {
+        if (key !== STATIC_CACHE_NAME) {
           await caches.delete(key);
         }
       }
@@ -67,8 +68,7 @@ worker.addEventListener("activate", (event) => {
  * Fall back to the cache if the user is offline.
  */
 async function fetchAndCache(request: Request) {
-  const cache = await caches.open(APP_CACHE_NAME);
-
+  const cache = await caches.open(STATIC_CACHE_NAME);
   try {
     const response = await fetch(request);
     cache.put(request, response.clone());

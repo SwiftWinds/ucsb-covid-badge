@@ -1,7 +1,8 @@
 <script lang="ts">
   import "../app.css";
+
+  import SvelteTheme from "svelte-themes/SvelteTheme.svelte";
 </script>
 
-<main>
-  <slot />
-</main>
+<SvelteTheme />
+<slot />

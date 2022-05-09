@@ -2,7 +2,7 @@
   import ProfilePic from "./ProfilePic.svelte";
   import { name, permNum, pronouns } from "../stores";
   import { createEventDispatcher } from "svelte";
-  import { pronounsChoices } from "./form/Form.svelte";
+  import { pronounsChoices } from "./Form.svelte";
   import CloseIcon from "./icons/CloseIcon.svelte";
 
   export let time;
@@ -30,26 +30,28 @@
   lastName = $name.substring(firstName.length + 1);
 </script>
 
-<div class="badge">
-  <header>
-    <div>UCSB COVID-19 Clearance Status</div>
-    <h2>Cleared to be On-Site</h2>
-    <button on:click={handleClose}>
-      <CloseIcon />
-    </button>
-  </header>
-  <h2 class="enrollment-type">STUDENT</h2>
-  <div class="date">{timeString}</div>
-  <ProfilePic />
-  {#if $pronouns === pronounsChoices[0]}
-    <!--don't show pronouns-->
-    <h3>{$name}</h3>
-  {:else}
-    <h3>{firstName} - {$pronouns} {lastName}</h3>
-  {/if}
-  <div class="perm-number">#{$permNum?.substring(0, 6)}</div>
-  <div>Next Survey Due: {nextSurveyString}</div>
-</div>
+<main>
+  <div class="badge">
+    <header>
+      <div>UCSB COVID-19 Clearance Status</div>
+      <h2>Cleared to be On-Site</h2>
+      <button on:click={handleClose}>
+        <CloseIcon />
+      </button>
+    </header>
+    <h2 class="enrollment-type">STUDENT</h2>
+    <div class="date">{timeString}</div>
+    <ProfilePic />
+    {#if $pronouns === pronounsChoices[0]}
+      <!--don't show pronouns-->
+      <h3>{$name}</h3>
+    {:else}
+      <h3>{firstName} - {$pronouns} {lastName}</h3>
+    {/if}
+    <div class="perm-number">#{$permNum?.substring(0, 6)}</div>
+    <div>Next Survey Due: {nextSurveyString}</div>
+  </div>
+</main>
 
 <style lang="postcss">
   .badge {
