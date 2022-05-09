@@ -1,7 +1,3 @@
-<script context="module">
-  export const prerender = false;
-</script>
-
 <script lang="ts">
   import Badge from "../lib/Badge.svelte";
   import Form from "../lib/Form.svelte";
@@ -19,6 +15,7 @@
 
   $: showBadge = $badgeByDefault && !previousPage;
   let lastOpened = dayjs();
+  $: console.log("showBadge", showBadge);
 
   const toggleShowBadge = () => {
     lastOpened = dayjs();
