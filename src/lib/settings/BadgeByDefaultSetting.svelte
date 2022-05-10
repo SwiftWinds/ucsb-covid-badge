@@ -31,7 +31,7 @@
   setting="badge-by-default"
 >
   <BadgeIcon slot="icon" />
-  <div class="label">Show Badge By Default</div>
+  <div class="label">Show Badge On Load</div>
 </ToggleSetting>
 
 <style lang="postcss">
