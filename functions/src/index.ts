@@ -45,17 +45,21 @@ const db = admin.firestore();
 const addOne = admin.firestore.FieldValue.increment(1);
 
 const autofillSurvey = async () => {
-  const browser = await Promise.resolve(bundledChromium.executablePath).then(
-    (executablePath) => {
-      if (!executablePath) {
-        // local execution
-        return chromium.launch({
-          headless: false,
-        });
-      }
-      return chromium.launch({ executablePath, headless: false });
-    }
-  );
+  // `bundledChromium.executablePath` is a promise. It inflates the current
+  // version of Chromium and returns the path to the binary. If not running on
+  // AWS Lambda nor Google Cloud Functions, null is returned instead.
+  const executablePath = await bundledChromium.executablePath;
+
+  let browser;
+  if (executablePath) {
+    // on Firebase Functions
+    browser = await chromium.launch({ executablePath, headless: false });
+  } else {
+    // local execution
+    browser = await chromium.launch({
+      headless: false,
+    });
+  }
 
   const users = await db.collection("users").get();
   for (const user of users.docs) {
@@ -65,26 +69,23 @@ const autofillSurvey = async () => {
     }
 
     const context = await browser.newContext();
-    // Open new page
     const page = await context.newPage();
-    // Go to https://studenthealthoc.sa.ucsb.edu/login_dualauthentication.aspx
+
+    // go to login page
     await page.goto(
       "https://studenthealthoc.sa.ucsb.edu/login_dualauthentication.aspx"
     );
-    // Click text=UCSB Students, Faculty and Staff
+
+    // select that we're a student
     await page.locator("text=UCSB Students, Faculty and Staff").click();
-    // assert.equal(page.url(), 'https://sso.ucsb.edu/cas/login?service=https%3a%2f%2fstudenthealthoc.sa.ucsb.edu%2f');
-    // Fill [placeholder="UCSBnetID"]
+
+    // enter username and password
     await page.locator('[placeholder="UCSBnetID"]').fill(username);
-    // Click [placeholder="Password"]
     await page.locator('[placeholder="UCSBnetID"]').press("Tab");
-    // Fill [placeholder="Password"]
     await page.locator('[placeholder="Password"]').fill(password);
-    // Click input:has-text("Log In")
     await page.locator('[placeholder="Password"]').press("Enter");
-    // assert.equal(page.url(), 'https://sso.ucsb.edu/cas/login?service=https%3a%2f%2fstudenthealthoc.sa.ucsb.edu%2f');
-    // Fill text=Passcode Your next SMS Passcode starts with 2 Log In >> [placeholder="ex\. 867539"]
-    // Click html
+
+    // look for cancel button (timeout in 2000ms)
     await page.locator("#duo_iframe").waitFor();
     try {
       await page.waitForSelector("#duo_iframe >> text=Cancel", {
@@ -101,15 +102,18 @@ const autofillSurvey = async () => {
     } catch {
       console.log("no cancelBtn");
     }
+
+    // press 'Enter a Passcode'
     await page
       .frameLocator("#duo_iframe")
       .locator('button >> text="Enter a Passcode" >> visible=true')
       .click();
+
+    // input passcode and press enter
     await page
       .frameLocator("#duo_iframe")
       .locator('.passcode-input-wrapper [name="passcode"] >> visible=true')
       .fill(hotp.generate(hotpSecret, counter));
-    // Press Enter
     await Promise.all([
       page.waitForNavigation(/*{ url: 'https://studenthealthoc.sa.ucsb.edu/home.aspx' }*/),
       page
@@ -117,42 +121,35 @@ const autofillSurvey = async () => {
         .locator('.passcode-input-wrapper [name="passcode"] >> visible=true')
         .press("Enter"),
     ]);
-    // Click text=Complete Survey
+
+    // complete the survey
     await page.locator("text=Complete Survey").click();
-    // assert.equal(page.url(), 'https://studenthealthoc.sa.ucsb.edu/CheckIn/Survey/Intro/24');
-    // Click div[role="main"] a:has-text("Continue")
     await page.locator('div[role="main"] a:has-text("Continue")').click();
-    // assert.equal(page.url(), 'https://studenthealthoc.sa.ucsb.edu/CheckIn/Survey/ShowAll/24');
-    // Click .question .row div:nth-child(2) .answer >> nth=0
     await page
       .locator(".question .row div:nth-child(2) .answer")
       .first()
       .click();
-    // Click div:nth-child(89) .question .row div:nth-child(2) .answer
     await page
       .locator("div:nth-child(89) .question .row div:nth-child(2) .answer")
       .click();
-    // Click div:nth-child(118) .question .row div:nth-child(2) .answer
     await page
       .locator("div:nth-child(118) .question .row div:nth-child(2) .answer")
       .click();
-    // Click div:nth-child(147) .question .row div:nth-child(2) .answer
     await page
       .locator("div:nth-child(147) .question .row div:nth-child(2) .answer")
       .click();
-    // Click div[role="main"] div:has-text("No or N/A") >> nth=3
     await page
       .locator('div[role="main"] div:has-text("No or N/A")')
       .nth(3)
       .click();
-    // Click div[role="main"] footer >> text=Continue
     await page.locator('div[role="main"] footer >> text=Continue').click();
-    // assert.equal(page.url(), 'https://studenthealthoc.sa.ucsb.edu/SurveyFormsHome.aspx?success=1');
-    // Click text=Show Badge
+
+    // show badge
     await page.locator("text=Show Badge").click();
-    // ---------------------
+
     await context.close();
 
+    // increment HOTP counter
     await user.ref.update({ counter: addOne });
   }
   await browser.close();
