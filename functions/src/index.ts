@@ -1,6 +1,6 @@
 import { chromium } from "playwright-core";
 import bundledChromium from "chrome-aws-lambda";
-// import * as functions from "firebase-functions";
+import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
 import { ServiceAccount } from "firebase-admin";
 import serviceAccount from "../serviceAccountKey.json";
@@ -64,9 +64,6 @@ const autofillSurvey = async () => {
   const users = await db.collection("users").get();
   for (const user of users.docs) {
     const { username, password, hotpSecret, counter } = user.data();
-    if (username === "mathewwang") {
-      continue;
-    }
 
     const context = await browser.newContext();
     const page = await context.newPage();
@@ -166,13 +163,14 @@ const autofillSurvey = async () => {
   await browser.close();
 };
 
-// exports.autofillSurvey = functions
-//   .runWith({
-//     memory: "2GB",
-//     timeoutSeconds: 540,
-//   })
-//   .pubsub.schedule("0 3 * * *")
-//   .timeZone("America/Los_Angeles")
-//   .onRun(autofillSurvey);
+exports.autofillSurvey = functions
+  .runWith({
+    memory: "2GB",
+    timeoutSeconds: 540,
+  })
+  .region("us-west2")
+  .pubsub.schedule("0 3 * * *")
+  .timeZone("America/Los_Angeles")
+  .onRun(autofillSurvey);
 
-autofillSurvey();
+// autofillSurvey();
