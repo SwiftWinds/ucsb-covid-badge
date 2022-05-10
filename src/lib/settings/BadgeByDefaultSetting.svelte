@@ -6,17 +6,11 @@
   const handleBadgeByDefaultChange = async (e) => {
     const badgeByDefault = e.target.checked;
     await setBadgeByDefault(badgeByDefault);
-    const version = __KIT_VERSION__;
 
     // revalidate dependent routes
     const routes = ["/", "/settings"];
     await Promise.all(
-      routes.map(async (route) => {
-        const response = await fetch(route, {
-          credentials: "include",
-        });
-        const text = await response.text();
-      })
+      routes.map((route) => fetch(route, { credentials: "include" }))
     );
   };
 </script>
