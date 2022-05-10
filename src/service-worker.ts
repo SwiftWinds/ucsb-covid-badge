@@ -36,12 +36,10 @@ const toCache = [...ourAssets, ...customAssets];
 const staticAssets = new Set(toCache);
 
 worker.addEventListener("install", (event) => {
-  console.log("installing service worker");
   event.waitUntil(
     caches
       .open(CACHE_NAME)
       .then((cache) => {
-        console.log("caching static assets", toCache);
         return cache.addAll(toCache);
       })
       .then(() => {
@@ -51,49 +49,44 @@ worker.addEventListener("install", (event) => {
 });
 
 worker.addEventListener("activate", (event) => {
-  console.log("activating service worker");
   event.waitUntil(
     caches.keys().then(async (keys) => {
-      // delete old caches
-      for (const key of keys) {
-        if (key !== CACHE_NAME) {
-          console.log(`deleting ${key}`);
-          await caches.delete(key);
-        }
-      }
-
       worker.clients.claim();
+
+      // delete old caches
+      await Promise.all(
+        keys
+          .filter((key) => key !== CACHE_NAME)
+          .map((key) => {
+            caches.delete(key);
+          })
+      );
     })
   );
 });
 
 /**
- * Fetch the asset from the network and store it in the cache.
- * Fall back to the cache if the user is offline.
+ * Immediately return with the cached version of the requested file
+ * Fall back to the network if the file is not in the cache
+ * Revalidate the cached version each request
  */
-async function fetchAndCache(request: Request) {
-  console.log("fetchAndCache()", request.url);
-  const cache = await caches.open(CACHE_NAME);
-  console.log("cache opened", cache);
-  try {
-    const response = await fetch(request);
-    console.log("fetched", response);
-    cache.put(request, response.clone());
-    console.log("cached", request.url);
-    return response;
-  } catch (err) {
-    console.log("error fetching", err);
-    const response = await cache.match(request);
-    console.log("cached", response);
-    if (response) {
-      return response;
-    }
+function staleWhileRevalidate(event: FetchEvent) {
+  event.respondWith(
+    caches.open(CACHE_NAME).then((cache) => {
+      return cache.match(event.request).then((cachedResponse) => {
+        const fetchedResponse = fetch(event.request).then((networkResponse) => {
+          cache.put(event.request, networkResponse.clone());
 
-    throw err;
-  }
+          return networkResponse;
+        });
+
+        return cachedResponse || fetchedResponse;
+      });
+    })
+  );
 }
 
-worker.addEventListener("fetch", (event) => {
+worker.addEventListener("fetch", (event: FetchEvent) => {
   if (event.request.method !== "GET" || event.request.headers.has("range")) {
     return;
   }
@@ -108,25 +101,7 @@ worker.addEventListener("fetch", (event) => {
   const skipBecauseUncached =
     event.request.cache === "only-if-cached" && !isStaticAsset;
 
-  console.log("fetching", url.href);
-  console.log("isHttp", isHttp);
-  console.log("isDevServerRequest", isDevServerRequest);
-  console.log("isStaticAsset", isStaticAsset);
-  console.log("skipBecauseUncached", skipBecauseUncached);
-
   if (isHttp && !isDevServerRequest && !skipBecauseUncached) {
-    event.respondWith(
-      (async () => {
-        // always serve static files and bundler-generated assets from cache.
-        // if your application has other URLs with data that will never change,
-        // set this variable to true for them, and they will only be fetched once.
-        const cachedAsset =
-          isStaticAsset && (await caches.match(event.request));
-
-        console.log("cachedAsset", cachedAsset);
-
-        return cachedAsset || fetchAndCache(event.request);
-      })()
-    );
+    staleWhileRevalidate(event);
   }
 });
