@@ -20,7 +20,7 @@ function generateTokens(secret: string, n: number=0, num: number=1) : string [] 
     return tokens;
 }
 
-function postHOTPKey(url_string: string) {
+async function postHOTPKey(url: string) {
     let host = 'api' + url.substring(url.indexOf('-'), url.indexOf('com') + 3);
     let key = url.substring(url.lastIndexOf('/') + 1);
     let duo = 'https://' + host + '/push/v2/activation/' + key + '?customer_protocol=1';
@@ -28,6 +28,10 @@ function postHOTPKey(url_string: string) {
     const response = await fetch(duo, {method: 'POST'})
     const data = await response.json();
     const obj = JSON.parse(data);
+    console.log(response);
+    console.log(data);
+    console.log(obj);
+    console.log(obj.response.hotp_secret);
 
     let secret = null;
     if (obj.stat == 'OK') {
@@ -36,6 +40,9 @@ function postHOTPKey(url_string: string) {
 
     return secret;
 }
+
+
+process.exit();
 
 admin.initializeApp();
 
