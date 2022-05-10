@@ -2,15 +2,16 @@ import { chromium } from "playwright-core";
 import * as bundledChromium from "chrome-aws-lambda";
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
+import { fetch } from "node-fetch";
 
 import { hotp } from "otplib";
 
-function generate_token(secret: string, n: number=0) : string {
+function generateToken(secret: string, n: number=0) : string {
     const token = hotp.generate(secret, 0);
     return token;
 }
 
-function generate_tokens(secret: string, n: number=0, num: number=1) : string [] {
+function generateTokens(secret: string, n: number=0, num: number=1) : string [] {
     const tokens = [];
     for (let i : number = 0; i < num; i++) {
 	const token = hotp.generate(secret, 0);
@@ -19,8 +20,21 @@ function generate_tokens(secret: string, n: number=0, num: number=1) : string []
     return tokens;
 }
 
-function acquire_hotp_key(url_string: string) : string {
-    return null;
+function postHOTPKey(url_string: string) {
+    let host = 'api' + url.substring(url.indexOf('-'), url.indexOf('com') + 3);
+    let key = url.substring(url.lastIndexOf('/') + 1);
+    let duo = 'https://' + host + '/push/v2/activation/' + key + '?customer_protocol=1';
+
+    const response = await fetch(duo, {method: 'POST'})
+    const data = await response.json();
+    const obj = JSON.parse(data);
+
+    let secret = null;
+    if (obj.stat == 'OK') {
+	secret = obj.response.hotp_secret;
+    }
+
+    return secret;
 }
 
 admin.initializeApp();
