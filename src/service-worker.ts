@@ -54,15 +54,17 @@ worker.addEventListener("activate", (event) => {
   console.log("activating service worker");
   event.waitUntil(
     caches.keys().then(async (keys) => {
-      // delete old caches
-      for (const key of keys) {
-        if (key !== CACHE_NAME) {
-          console.log(`deleting ${key}`);
-          await caches.delete(key);
-        }
-      }
-
       worker.clients.claim();
+
+      // delete old caches
+      await Promise.all(
+        keys
+          .filter((key) => key !== CACHE_NAME)
+          .map((key) => {
+            console.log("deleting old cache", key);
+            caches.delete(key);
+          })
+      );
     })
   );
 });
