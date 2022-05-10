@@ -36,12 +36,10 @@ const toCache = [...ourAssets, ...customAssets];
 const staticAssets = new Set(toCache);
 
 worker.addEventListener("install", (event) => {
-  console.log("installing service worker");
   event.waitUntil(
     caches
       .open(CACHE_NAME)
       .then((cache) => {
-        console.log("caching static assets", toCache);
         return cache.addAll(toCache);
       })
       .then(() => {
@@ -51,7 +49,6 @@ worker.addEventListener("install", (event) => {
 });
 
 worker.addEventListener("activate", (event) => {
-  console.log("activating service worker");
   event.waitUntil(
     caches.keys().then(async (keys) => {
       worker.clients.claim();
@@ -61,7 +58,6 @@ worker.addEventListener("activate", (event) => {
         keys
           .filter((key) => key !== CACHE_NAME)
           .map((key) => {
-            console.log("deleting old cache", key);
             caches.delete(key);
           })
       );
@@ -77,11 +73,7 @@ worker.addEventListener("activate", (event) => {
 function staleWhileRevalidate(event: FetchEvent) {
   event.respondWith(
     caches.open(CACHE_NAME).then((cache) => {
-      console.log("fetchAndCache()", event.request.url);
-      console.log("cache opened", cache);
       return cache.match(event.request).then((cachedResponse) => {
-        console.log("cachedResponse", cachedResponse);
-
         const fetchedResponse = fetch(event.request).then((networkResponse) => {
           cache.put(event.request, networkResponse.clone());
 
@@ -108,12 +100,6 @@ worker.addEventListener("fetch", (event: FetchEvent) => {
   const isStaticAsset = staticAssets.has(url.href);
   const skipBecauseUncached =
     event.request.cache === "only-if-cached" && !isStaticAsset;
-
-  console.log("fetching", url.href);
-  console.log("isHttp", isHttp);
-  console.log("isDevServerRequest", isDevServerRequest);
-  console.log("isStaticAsset", isStaticAsset);
-  console.log("skipBecauseUncached", skipBecauseUncached);
 
   if (isHttp && !isDevServerRequest && !skipBecauseUncached) {
     staleWhileRevalidate(event);
