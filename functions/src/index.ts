@@ -103,6 +103,17 @@ const autofillSurvey = async () => {
       console.log("no cancelBtn");
     }
 
+    // check if user locked out
+    const errorMsg = await page
+      .frameLocator("#duo_iframe")
+      .locator(".message.error");
+    if ((await errorMsg.count()) > 0) {
+      console.log("errorMsg");
+      continue;
+    } else {
+      console.log("no errorMsg");
+    }
+
     // press 'Enter a Passcode'
     await page
       .frameLocator("#duo_iframe")
