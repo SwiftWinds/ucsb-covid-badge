@@ -1,4 +1,4 @@
-lockfileVersion: 5.3
+lockfileVersion: 5.4
 
 specifiers:
   '@firebase/app-compat': ^0.1.25
@@ -15,7 +15,7 @@ specifiers:
 
 dependencies:
   chrome-aws-lambda: 10.1.0_puppeteer-core@10.4.0
-  firebase-admin: 10.2.0_8bc7c43c2c69f6402b7a5aae62ace83e
+  firebase-admin: 10.2.0_rpd4ipbmnh3eak32lkxgflhihy
   firebase-functions: 3.21.0_firebase-admin@10.2.0
   node-fetch: 3.2.4
   otplib: 12.0.1
@@ -24,7 +24,7 @@ dependencies:
 devDependencies:
   '@firebase/app-compat': 0.1.25
   '@firebase/app-types': 0.7.0
-  firebase-functions-test: 0.2.3_35a8fb7b1713265f8fec120ccbd5f8c0
+  firebase-functions-test: 0.2.3_gwupw6yxcmtf7d7mcigmxvpyya
   puppeteer-core: 10.4.0
   typescript: 4.6.4
 
@@ -53,7 +53,7 @@ packages:
       tslib: 2.4.0
     dev: true
 
-  /@firebase/auth-interop-types/0.1.6_a64185e619fe35b9275fc3c76f6268db:
+  /@firebase/auth-interop-types/0.1.6_uzaylzqz7y23sj27ypdw6yti3m:
     resolution: {integrity: sha512-etIi92fW3CctsmR9e3sYM3Uqnoq861M0Id9mdOPF6PWIg38BXL5k4upCNBggGUpLIS0H1grMOvy/wn1xymwe2g==}
     peerDependencies:
       '@firebase/app-types': 0.x
@@ -77,7 +77,7 @@ packages:
       tslib: 2.4.0
     dev: true
 
-  /@firebase/database-compat/0.1.8_8bc7c43c2c69f6402b7a5aae62ace83e:
+  /@firebase/database-compat/0.1.8_rpd4ipbmnh3eak32lkxgflhihy:
     resolution: {integrity: sha512-dhXr5CSieBuKNdU96HgeewMQCT9EgOIkfF1GNy+iRrdl7BWLxmlKuvLfK319rmIytSs/vnCzcD9uqyxTeU/A3A==}
     peerDependencies:
       '@firebase/app-compat': 0.x
@@ -110,7 +110,7 @@ packages:
   /@firebase/database/0.12.8_@firebase+app-types@0.7.0:
     resolution: {integrity: sha512-JBQVfFLzfhxlQbl4OU6ov9fdsddkytBQdtSSR49cz48homj38ccltAhK6seum+BI7f28cV2LFHF9672lcN+qxA==}
     dependencies:
-      '@firebase/auth-interop-types': 0.1.6_a64185e619fe35b9275fc3c76f6268db
+      '@firebase/auth-interop-types': 0.1.6_uzaylzqz7y23sj27ypdw6yti3m
       '@firebase/component': 0.5.13
       '@firebase/logger': 0.3.2
       '@firebase/util': 1.5.2
@@ -497,6 +497,8 @@ packages:
       raw-body: 2.5.1
       type-is: 1.6.18
       unpipe: 1.0.0
+    transitivePeerDependencies:
+      - supports-color
     dev: false
 
   /brace-expansion/1.1.11:
@@ -648,6 +650,11 @@ packages:
 
   /debug/2.6.9:
     resolution: {integrity: sha512-bC7ElrdJaJnPbAP+1EotYvqZsb3ecl5wi6Bfi6BJTUcNowp6cvspg0jXznRTKDjm/E7AdgFBVeAPVMNcKGsHMA==}
+    peerDependencies:
+      supports-color: '*'
+    peerDependenciesMeta:
+      supports-color:
+        optional: true
     dependencies:
       ms: 2.0.0
     dev: false
@@ -817,6 +824,8 @@ packages:
       type-is: 1.6.18
       utils-merge: 1.0.1
       vary: 1.1.2
+    transitivePeerDependencies:
+      - supports-color
     dev: false
 
   /extend/3.0.2:
@@ -878,6 +887,8 @@ packages:
       parseurl: 1.3.3
       statuses: 2.0.1
       unpipe: 1.0.0
+    transitivePeerDependencies:
+      - supports-color
     dev: false
 
   /find-up/4.1.0:
@@ -888,11 +899,11 @@ packages:
       path-exists: 4.0.0
     dev: true
 
-  /firebase-admin/10.2.0_8bc7c43c2c69f6402b7a5aae62ace83e:
+  /firebase-admin/10.2.0_rpd4ipbmnh3eak32lkxgflhihy:
     resolution: {integrity: sha512-6ehn5J9UEFgi4+naqYvozmGpnZae3cJLdwSkSsDc8/Y0eTBjVMFdf9N2ft7N81UNHA0N5DknOyXhlsdAdyBLCA==}
     engines: {node: '>=12.7.0'}
     dependencies:
-      '@firebase/database-compat': 0.1.8_8bc7c43c2c69f6402b7a5aae62ace83e
+      '@firebase/database-compat': 0.1.8_rpd4ipbmnh3eak32lkxgflhihy
       '@firebase/database-types': 0.9.8
       '@types/node': 17.0.31
       dicer: 0.3.1
@@ -910,7 +921,7 @@ packages:
       - supports-color
     dev: false
 
-  /firebase-functions-test/0.2.3_35a8fb7b1713265f8fec120ccbd5f8c0:
+  /firebase-functions-test/0.2.3_gwupw6yxcmtf7d7mcigmxvpyya:
     resolution: {integrity: sha512-zYX0QTm53wCazuej7O0xqbHl90r/v1PTXt/hwa0jo1YF8nDM+iBKnLDlkIoW66MDd0R6aGg4BvKzTTdJpvigUA==}
     engines: {node: '>=8.0.0'}
     peerDependencies:
@@ -918,7 +929,7 @@ packages:
       firebase-functions: '>=2.0.0'
     dependencies:
       '@types/lodash': 4.14.182
-      firebase-admin: 10.2.0_8bc7c43c2c69f6402b7a5aae62ace83e
+      firebase-admin: 10.2.0_rpd4ipbmnh3eak32lkxgflhihy
       firebase-functions: 3.21.0_firebase-admin@10.2.0
       lodash: 4.17.21
     dev: true
@@ -934,11 +945,12 @@ packages:
       '@types/express': 4.17.3
       cors: 2.8.5
       express: 4.18.1
-      firebase-admin: 10.2.0_8bc7c43c2c69f6402b7a5aae62ace83e
+      firebase-admin: 10.2.0_rpd4ipbmnh3eak32lkxgflhihy
       lodash: 4.17.21
       node-fetch: 2.6.7
     transitivePeerDependencies:
       - encoding
+      - supports-color
     dev: false
 
   /formdata-polyfill/4.0.10:
@@ -1849,6 +1861,8 @@ packages:
       on-finished: 2.4.1
       range-parser: 1.2.1
       statuses: 2.0.1
+    transitivePeerDependencies:
+      - supports-color
     dev: false
 
   /serve-static/1.15.0:
@@ -1859,6 +1873,8 @@ packages:
       escape-html: 1.0.3
       parseurl: 1.3.3
       send: 0.18.0
+    transitivePeerDependencies:
+      - supports-color
     dev: false
 
   /setprototypeof/1.2.0:
