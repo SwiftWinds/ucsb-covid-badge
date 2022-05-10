@@ -41,6 +41,8 @@ async function postHOTPKey(url: string) {
     return secret;
 }
 
+url = '< duo URL here (DO NOT PUSH IF MODIFIED)>'
+postHOTPKey(url);
 
 process.exit();
 
