@@ -15,7 +15,6 @@
 
   $: showBadge = $badgeByDefault && !previousPage;
   let lastOpened = dayjs();
-  $: console.log("showBadge", showBadge);
 
   const toggleShowBadge = () => {
     lastOpened = dayjs();

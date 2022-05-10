@@ -40,7 +40,6 @@
   "type": "module",
   "dependencies": {
     "dayjs": "^1.11.2",
-    "node-2fa": "^2.0.3",
     "svelte-themes": "^0.0.98"
   },
   "repository": {
