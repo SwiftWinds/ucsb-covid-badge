@@ -2,7 +2,6 @@ import { chromium } from "playwright-core";
 import bundledChromium from "chrome-aws-lambda";
 // import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
-import { fetch } from "node-fetch";
 import { ServiceAccount } from "firebase-admin";
 import serviceAccount from "../serviceAccountKey.json";
 import { hotp } from "otplib";
@@ -20,31 +19,23 @@ import { hotp } from "otplib";
 //   return tokens;
 // }
 //
-async function postHOTPKey(url: string) {
-    let host = 'api' + url.substring(url.indexOf('-'), url.indexOf('com') + 3);
-    let key = url.substring(url.lastIndexOf('/') + 1);
-    let duo = 'https://' + host + '/push/v2/activation/' + key + '?customer_protocol=1';
-
-    const response = await fetch(duo, {method: 'POST'})
-    const data = await response.json();
-    const obj = JSON.parse(data);
-    console.log(response);
-    console.log(data);
-    console.log(obj);
-    console.log(obj.response.hotp_secret);
-
-    return null;
-    if (obj.stat == 'OK') {
-	secret = obj.response.hotp_secret;
-    }
-
-    return secret;
-}
-
-url = '< duo URL here (DO NOT PUSH IF MODIFIED)>'
-postHOTPKey(url);
-
-process.exit();
+// async function postHOTPKey(url: string) {
+//   const host = "api" + url.substring(url.indexOf("-"), url.indexOf("com") + 3);
+//   const key = url.substring(url.lastIndexOf("/") + 1);
+//   const duo =
+//     "https://" + host + "/push/v2/activation/" + key + "?customer_protocol=1";
+//
+//   const response = await fetch(duo, { method: "POST" });
+//   const data = (await response.json()) as any;
+//   if (data.stat === "OK") {
+//     return data.response.hotp_secret;
+//   }
+// }
+//
+// const url = "< duo URL here (DO NOT PUSH IF MODIFIED)>";
+// postHOTPKey(url);
+//
+// process.exit();
 
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount as ServiceAccount),
