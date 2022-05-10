@@ -5,11 +5,23 @@ import * as admin from "firebase-admin";
 
 import { hotp } from "otplib";
 
-const secret = "<secret here>";
+function generate_token(secret: string, n: number=0) : string {
+    const token = hotp.generate(secret, 0);
+    return token;
+}
 
-const token = hotp.generate(secret, 0);
+function generate_tokens(secret: string, n: number=0, num: number=1) : string [] {
+    const tokens = [];
+    for (let i : number = 0; i < num; i++) {
+	const token = hotp.generate(secret, 0);
+	tokens.push(token);
+    }
+    return tokens;
+}
 
-console.log(token);
+function acquire_hotp_key(url_string: string) : string {
+    return null;
+}
 
 admin.initializeApp();
 
