@@ -8,8 +8,8 @@
     noImgFallback,
     permNum,
     profilePic,
-    pronouns
-  } from "../../stores";
+    pronouns,
+  } from "../stores";
 
   let isModalShown = false;
 
@@ -33,9 +33,7 @@
 {#if isModalShown}
   <ConfirmModal on:close={handleCloseModal} on:confirm={handleClearBadge} />
 {/if}
-<Setting
-  setting="clear-badge"
->
+<Setting setting="clear-badge">
   <TrashIcon slot="icon" />
   Clear badge
   <DangerBtn on:click={handleShowModal} slot="input" />
@@ -44,11 +42,13 @@
 <style lang="postcss">
   :global([data-theme="dark"] [setting="clear-badge"]) {
     --icon-bg-color: #532f58;
-    --icon-color: invert(70%) sepia(23%) saturate(598%) hue-rotate(298deg) brightness(200%) contrast(103%);
+    --icon-color: invert(70%) sepia(23%) saturate(598%) hue-rotate(298deg)
+      brightness(200%) contrast(103%);
   }
 
   :global([data-theme="light"] [setting="clear-badge"]) {
     --icon-bg-color: #ffe7ed;
-    --icon-color: invert(25%) sepia(98%) saturate(4103%) hue-rotate(335deg) brightness(102%) contrast(98%);
+    --icon-color: invert(25%) sepia(98%) saturate(4103%) hue-rotate(335deg)
+      brightness(102%) contrast(98%);
   }
 </style>

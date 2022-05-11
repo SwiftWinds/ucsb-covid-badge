@@ -1,13 +1,14 @@
 <script lang="ts">
   export let checked;
 </script>
+
 <div class="right">
   <div>
     {checked ? "On" : "Off"}
   </div>
   <label class="form-switch">
-    <input {checked} on:change type="checkbox">
-    <i></i>
+    <input bind:checked on:change type="checkbox" />
+    <i />
   </label>
 </div>
 
@@ -42,7 +43,7 @@
   .form-switch i {
     position: relative;
     display: inline-block;
-    margin-right: .5rem;
+    margin-right: 0.5rem;
     width: 46px;
     height: 26px;
     background-color: var(--form-switch-bg);

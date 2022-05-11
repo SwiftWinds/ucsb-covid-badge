@@ -8,5 +8,5 @@
 <Setting {setting}>
   <slot name="icon" slot="icon" />
   <slot />
-  <Toggle {checked} on:change slot="input" />
+  <Toggle bind:checked on:change slot="input" />
 </Setting>
