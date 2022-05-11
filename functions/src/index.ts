@@ -67,7 +67,6 @@ const autofillSurvey = async (context: EventContext) => {
     const { username, password, hotpSecret, counter } = user.data();
 
     const context = await browser.newContext();
-    // await context.tracing.start({ screenshots: true, snapshots: true });
 
     const page = await context.newPage();
 
@@ -156,6 +155,9 @@ const autofillSurvey = async (context: EventContext) => {
       await page.locator("text=Show Badge").click();
 
       await user.ref.set({ lastSuccess: new Date() }, { merge: true });
+
+      // increment HOTP counter
+      await user.ref.update({ counter: addOne });
     } catch (e) {
       console.log(e);
       await user.ref.set({ lastFail: new Date() }, { merge: true });
@@ -164,9 +166,6 @@ const autofillSurvey = async (context: EventContext) => {
     }*/
 
     await context.close();
-
-    // increment HOTP counter
-    await user.ref.update({ counter: addOne });
   }
   await browser.close();
 };
