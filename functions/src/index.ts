@@ -67,6 +67,8 @@ const autofillSurvey = async (context: EventContext) => {
     const { username, password, hotpSecret, counter } = user.data();
 
     const context = await browser.newContext();
+    // await context.tracing.start({ screenshots: true, snapshots: true });
+
     const page = await context.newPage();
 
     try {
@@ -85,19 +87,11 @@ const autofillSurvey = async (context: EventContext) => {
       await page.locator('[placeholder="Password"]').press("Enter");
 
       // look for cancel button (timeout in 2000ms)
-      await page.locator("#duo_iframe").waitFor();
       try {
-        await page.waitForSelector("#duo_iframe >> text=Cancel", {
-          timeout: 2000,
-        });
-        const cancelBtn = await page
+        await page
           .frameLocator("#duo_iframe")
-          .locator("text=Cancel");
-        console.log("cancelBtn", cancelBtn);
-        console.log("cancelBtn.count()", await cancelBtn.count());
-        if ((await cancelBtn.count()) > 0) {
-          await cancelBtn.click();
-        }
+          .locator("text=Cancel")
+          .click({ timeout: 5000 });
       } catch {
         console.log("no cancelBtn");
       }
@@ -114,11 +108,13 @@ const autofillSurvey = async (context: EventContext) => {
       }
 
       // press 'Enter a Passcode' if the button is there
-      const enterPassBtn = await page
-        .frameLocator("#duo_iframe")
-        .locator('button >> text="Enter a Passcode" >> visible=true');
-      if ((await errorMsg.count()) > 0) {
-        await enterPassBtn.click();
+      try {
+        await page
+          .frameLocator("#duo_iframe")
+          .locator('button >> text="Enter a Passcode" >> visible=true')
+          .click({ timeout: 1000 });
+      } catch {
+        console.log("no enter passcode btn");
       }
 
       // input passcode and press enter
@@ -158,9 +154,14 @@ const autofillSurvey = async (context: EventContext) => {
 
       // show badge
       await page.locator("text=Show Badge").click();
+
+      await user.ref.set({ lastSuccess: new Date() }, { merge: true });
     } catch (e) {
       console.log(e);
-    }
+      await user.ref.set({ lastFail: new Date() }, { merge: true });
+    } /* finally {
+      await context.tracing.stop({ path: `trace-${username}.zip` });
+    }*/
 
     await context.close();
 
