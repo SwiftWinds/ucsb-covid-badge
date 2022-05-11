@@ -1,6 +1,6 @@
 <script lang="ts">
   import ProfilePic from "./ProfilePic.svelte";
-  import { name, permNum, pronouns } from "../stores";
+  import { name, permNum, pronouns } from "./stores";
   import { createEventDispatcher } from "svelte";
   import { pronounsChoices } from "./Form.svelte";
   import CloseIcon from "./icons/CloseIcon.svelte";

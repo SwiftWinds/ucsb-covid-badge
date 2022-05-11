@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { noImgFallback, profilePic } from "../stores";
+  import { noImgFallback, profilePic } from "./stores";
 
   $: darken = $profilePic === noImgFallback;
 </script>

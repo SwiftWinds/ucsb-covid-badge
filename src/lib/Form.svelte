@@ -8,7 +8,7 @@
 </script>
 
 <script lang="ts">
-  import { name, permNum, profilePic, pronouns } from "../stores";
+  import { name, permNum, profilePic, pronouns } from "./stores";
   import Input from "./inputs/Input.svelte";
   import Select from "./inputs/Select.svelte";
   import ImgInputBtn from "./inputs/buttons/ImgInputBtn.svelte";

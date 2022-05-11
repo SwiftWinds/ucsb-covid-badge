@@ -1,25 +1,10 @@
 <script lang="ts">
-  import { badgeByDefault, setBadgeByDefault } from "../../stores.ts";
+  import { badgeByDefault } from "../stores.ts";
   import ToggleSetting from "./base/ToggleSetting.svelte";
   import BadgeIcon from "../icons/BadgeIcon.svelte";
-
-  const handleBadgeByDefaultChange = async (e) => {
-    const badgeByDefault = e.target.checked;
-    await setBadgeByDefault(badgeByDefault);
-
-    // revalidate dependent routes
-    const routes = ["/", "/settings"];
-    await Promise.all(
-      routes.map((route) => fetch(route, { credentials: "include" }))
-    );
-  };
 </script>
 
-<ToggleSetting
-  checked={$badgeByDefault}
-  on:change={handleBadgeByDefaultChange}
-  setting="badge-by-default"
->
+<ToggleSetting bind:checked={$badgeByDefault} setting="badge-by-default">
   <BadgeIcon slot="icon" />
   <div class="label">Show Badge On Load</div>
 </ToggleSetting>

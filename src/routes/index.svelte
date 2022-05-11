@@ -3,7 +3,7 @@
   import Form from "../lib/Form.svelte";
   import Header from "../lib/Header.svelte";
   import SettingsBtn from "../lib/inputs/buttons/SettingsBtn.svelte";
-  import { badgeByDefault } from "../stores";
+  import { badgeByDefault } from "../lib/stores";
   import dayjs from "dayjs";
 
   import { afterNavigate } from "$app/navigation";
