@@ -293,7 +293,12 @@ dist
 # Optional stylelint cache
 
 # SvelteKit build / generate output
-.svelte-kit
+# except for _redirects
+.svelte-kit/*
+!.svelte-kit/
+.svelte-kit/cloudflare/*
+!.svelte-kit/cloudflare/
+!.svelte-kit/cloudflare/_redirects
 
 ### VisualStudioCode ###
 .vscode/*
