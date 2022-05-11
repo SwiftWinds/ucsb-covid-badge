@@ -29,6 +29,5 @@ export const getSession: GetSession = ({ request }) => {
   for (const [key, defaultVal] of Object.entries(defaultSettings)) {
     settings[key] = JSON.parse(getCookieValue(cookie, key)) ?? defaultVal;
   }
-  console.log("session", settings);
   return settings as Settings;
 };

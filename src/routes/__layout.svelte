@@ -24,8 +24,6 @@
 
   const settings = session as SessionStore;
 
-  $: console.log($settings);
-
   setName(persistentStore("name", $settings.name));
   setPronouns(persistentStore("pronouns", $settings.pronouns));
   setPermNum(persistentStore("permNum", $settings.permNum));
@@ -46,7 +44,6 @@
       }
       session.update((sessionVal) => ({ ...sessionVal, [key]: storeVal }));
       if (storeTimeout) {
-        console.log(`clearing timeout ${key}Timeout`);
         clearTimeout(storeTimeout);
       }
       storeTimeout = setTimeout(async () => {
@@ -55,7 +52,6 @@
           method: "POST",
           body: JSON.stringify(storeVal),
         });
-        console.log(`sent da ${key}`, storeVal);
         await Promise.all(
           routes.map((route) => fetch(route, { credentials: "include" }))
         );

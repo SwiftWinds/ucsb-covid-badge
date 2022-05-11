@@ -4,7 +4,6 @@ import type { RequestHandler } from "@sveltejs/kit";
 export const post: RequestHandler = async ({ params, request }) => {
   const { key } = params;
   const val = await request.text();
-  console.log(`api post: ${key} = ${val}`);
   return {
     status: 200,
     headers: {
